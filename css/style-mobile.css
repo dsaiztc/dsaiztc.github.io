@@ -1,5 +1,5 @@
 /*
-	Miniport 2.5 by HTML5 UP
+	Miniport by HTML5 UP
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
@@ -8,7 +8,7 @@
 /* Basic                                                                         */
 /*********************************************************************************/
 
-	body
+	body,input,textarea,select
 	{
 		line-height: 1.75em;
 		font-size: 10pt;
@@ -36,7 +36,7 @@
 		margin: 0 0 2em 0;
 	}
 	
-		header > span
+		header > p
 		{
 			font-size: 1.25em;
 		}
@@ -56,84 +56,95 @@
 		margin: 1.5em 0 2em 0;
 	}
 
-	form
-	{
-	}
+	/* Section/Article */
 	
-		form input[type=text],
-		form input[type=password],
-		form select,
-		form textarea
+		section,
+		article
+		{
+			clear: both;
+		}
+
+	/* Button */
+
+		input[type="button"],
+		input[type="submit"],
+		input[type="reset"],
+		.button
+		{
+			text-align: center;
+			font-size: 1.2em;
+			width: 100%;
+			padding: 1em 0 1em 0;
+		}
+
+	/* List */
+
+		ul
 		{
 		}
 
-	section,
-	article
-	{
-		clear: both;
-	}
+			ul.social
+			{
+				padding: 1em 0.5em 0 0.5em;
+			}
 
-	.button
-	{
-		text-align: center;
-		font-size: 1.2em;
-		width: 100%;
-		padding: 1em 0 1em 0;
-		margin: 0.25em 0 0.25em 0;
-	}
+				ul.social li
+				{
+					margin: 0.5em 0.5em 0.5em 0.5em;
+				}
 
-	ul.social
-	{
-		padding: 1em 0.5em 0 0.5em;
-	}
+					ul.social li a
+					{
+						top: 0 !important;
+					}
 
-		ul.social li
+						ul.social li a:before
+						{
+							background-color: transparent !important;
+						}
+
+			ul.actions
+			{
+				margin: 0;
+			}
+
+				ul.actions li
+				{
+					display: block;
+					margin: 10px 0 0 0;
+				}
+				
+					ul.actions li:first-child
+					{
+						margin-top: 0;
+					}
+
+	/* Box */
+
+		.box
 		{
-			top: 0 !important;
-			margin: 0.5em 0.5em 0.5em 0.5em;
+			padding: 30px 20px 30px 20px;
+			margin: 0 0 20px 0 !important;
 		}
 
-		ul.social li.twitter			{ background-color: #2DAAE4; }
-		ul.social li.facebook			{ background-color: #3C5A98; }
-		ul.social li.dribbble			{ background-color: #C4376B; }
-		ul.social li.linkedin			{ background-color: #006599; }
-		ul.social li.tumblr				{ background-color: #51718A; }
-		ul.social li.googleplus			{ background-color: #DA2713; }
-		ul.social li.github				{ background-color: #FAFAFA; }
-		ul.social li.rss				{ background-color: #F2600B; }
-		ul.social li.instagram			{ background-color: #E0D7C8; }
-		ul.social li.foursquare			{ background-color: #39A3D4; }
-		ul.social li.skype				{ background-color: #10BEF1; }
-		ul.social li.soundcloud			{ background-color: #FE5419; }
-		ul.social li.youtube			{ background-color: #BF2E25; }
-		ul.social li.blogger			{ background-color: #FF6501; }
-		ul.social li.flickr				{ background-color: #0062DB; }
-		ul.social li.vimeo				{ background-color: #4C8AB0; }
+			.box h3
+			{
+				margin-bottom: 0.25em;
+			}
 
-	.box
-	{
-		padding: 30px 20px 30px 20px;
-		margin: 0 0 20px 0 !important;
-	}
+			.box .image.centered
+			{
+				margin-bottom: 1em;
+			}
 
-		.box h3
-		{
-			margin-bottom: 0.25em;
-		}
-
-		.box .image-centered
-		{
-			margin-bottom: 1em;
-		}
-
-		.box .image-full
-		{
-			position: relative;
-			left: 20px;
-			top: 20px;
-			margin: -50px 0 50px -40px;
-			width: auto;
-		}
+			.box .image.featured
+			{
+				position: relative;
+				left: 20px;
+				top: 20px;
+				margin: -50px 0 50px -40px;
+				width: auto;
+			}
 
 /*********************************************************************************/
 /* Wrappers                                                                      */
@@ -141,11 +152,11 @@
 
 	.wrapper
 	{
-		padding: 2.5em 15px 2.5em 15px;
+		padding: 3em 15px 3em 15px;
 		text-align: center;
 	}
 
-		.wrapper-first
+		.wrapper.first
 		{
 			padding-top: 5em;
 		}
@@ -171,13 +182,22 @@
 	{
 	}
 
-		#top .me
+		#top .image
 		{
 			width: 70%;
 			height: auto;
 			margin: 0 auto 1.75em auto;
 		}
-
+	
+	#contact
+	{
+	}
+	
+		#contact footer
+		{
+			margin: 0;
+		}
+		
 /*********************************************************************************/
 /* Copyright                                                                     */
 /*********************************************************************************/
@@ -185,4 +205,10 @@
 	#copyright
 	{
 		font-size: 1em;
+		margin: 0;
 	}
+	
+		#copyright li
+		{
+			display: block;
+		}

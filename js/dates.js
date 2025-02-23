@@ -24,6 +24,10 @@ function getYearsSince(date) {
     return Math.floor(diffInYears);
 }
 
+function getCurrentYear() {
+    return new Date().getFullYear();
+}
+
 function initializeRelativeDates() {
     // Handle regular relative dates
     document.querySelectorAll('time').forEach(timeElement => {
@@ -38,6 +42,11 @@ function initializeRelativeDates() {
         const startDate = element.getAttribute('data-years-since');
         const years = getYearsSince(startDate);
         element.textContent = `${years}+`;
+    });
+
+    // Handle copyright year
+    document.querySelectorAll('[data-current-year]').forEach(element => {
+        element.textContent = getCurrentYear();
     });
 }
 

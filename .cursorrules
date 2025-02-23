@@ -114,13 +114,15 @@
 1. Create new file in blog/posts/
 2. Add to blog listing in reverse chronological order
 3. Consider featuring on home page if recent/important, though it shall only feature the 3 most recent posts
+4. Use consistent card structure
+5. Use consistent date formatting (date it was created, and date it was last updated)
 
 ### Adding a New Project
 1. Add to projects/index.html
 2. Include all required information
 3. Consider adding to home page featured projects, though it shall only feature the 3 most recent projects
 4. Use consistent card structure
-
+5. Use consistent date formatting (date it was created, and date it was last updated)
 ### Navigation
 - Keep consistent across all pages
 - Current page link should be same style as others

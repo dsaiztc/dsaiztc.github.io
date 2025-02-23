@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Daniel Saiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <section class="space-y-4 md:space-y-8">
+            <div class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">Projects</h1>
+                <p class="text-base md:text-lg leading-relaxed">
+                    A selection of projects I've worked on.
+                </p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid gap-4 md:gap-8 mt-4 md:mt-8">
+                <a href="/AlumniUC3M/" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-lg md:text-xl font-semibold">UC3M Alumni Database Analysis</h2>
+                        <time datetime="2016-05-15" class="text-xs md:text-sm text-violet-600" data-relative></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Using BeautifulSoup to scrape Alumni data and analyze graduation timelines at Universidad Carlos III de Madrid.
+                    </p>
+                    <div class="mt-2 md:mt-4 flex gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Python</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">BeautifulSoup</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Data Analysis</span>
+                    </div>
+                </a>
+
+                <a href="/OSMDataWrangling/" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-lg md:text-xl font-semibold">OpenStreetMap Data Wrangling</h2>
+                        <time datetime="2016-04-20" class="text-xs md:text-sm text-violet-600" data-relative></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Data munging techniques to clean OpenStreetMap data, converting from XML to JSON format and importing into MongoDB.
+                    </p>
+                    <div class="mt-2 md:mt-4 flex gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Python</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">MongoDB</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Data Analysis</span>
+                    </div>
+                </a>
+
+                <a href="/NYCSubwayAnalysis/" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-lg md:text-xl font-semibold">NYC Subway Dataset Analysis</h2>
+                        <time datetime="2016-03-10" class="text-xs md:text-sm text-violet-600" data-relative></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Statistical analysis to determine if weather affects NYC subway ridership, using Python tools like pandas, stats, and matplotlib.
+                    </p>
+                    <div class="mt-2 md:mt-4 flex gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Python</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">pandas</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Data Visualization</span>
+                    </div>
+                </a>
+
+                <a href="/PFC.pdf" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors" target="_blank" rel="noopener noreferrer">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-lg md:text-xl font-semibold">Biker Assistant</h2>
+                        <time datetime="2015-09-01" class="text-xs md:text-sm text-violet-600" data-relative></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Android application for Bultaco Motors providing telemetry display, navigation, and intelligent range estimation using Neural Networks.
+                    </p>
+                    <div class="mt-2 md:mt-4 flex gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Android</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Java</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Neural Networks</span>
+                    </div>
+                </a>
+
+                <a href="/secretsanta/" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-lg md:text-xl font-semibold">Secret Santa App</h2>
+                        <time datetime="2015-12-15" class="text-xs md:text-sm text-violet-600" data-relative></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Android app for organizing Secret Santa events. Create groups, add participants, and automatically notify everyone by email.
+                    </p>
+                    <div class="mt-2 md:mt-4 flex gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Android</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Java</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/dsaiztc/MultilayerPerceptron" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors" target="_blank" rel="noopener noreferrer">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-lg md:text-xl font-semibold">MLP Java</h2>
+                        <time datetime="2015-11-01" class="text-xs md:text-sm text-violet-600" data-relative></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        A Java implementation of an Artificial Neural Network based on Multilayer Perceptron using EJML library for matrix management.
+                    </p>
+                    <div class="mt-2 md:mt-4 flex gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Java</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Machine Learning</span>
+                        <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Open Source</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2024</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

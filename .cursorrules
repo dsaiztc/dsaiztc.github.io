@@ -1,0 +1,207 @@
+# Website Structure and Style Guide
+
+## Project Structure
+```
+.
+├── index.html          # Home page
+├── blog/              
+│   └── index.html     # Blog listing
+├── projects/
+│   └── index.html     # Projects showcase
+├── about/
+│   └── index.html     # About me page
+├── js/
+│   └── dates.js       # Date formatting utilities
+└── resume.pdf         # Resume file
+```
+
+## Tech Stack
+- HTML5 for structure
+- Tailwind CSS via CDN for styling
+- JetBrains Mono font via CDN
+- Vanilla JavaScript for date handling
+- No build step required
+
+## Design System
+
+### Typography
+- Font: JetBrains Mono (monospace)
+- Sizes:
+  - Headings: 
+    - H1: text-2xl md:text-4xl
+    - H2: text-xl md:text-2xl
+    - H3: text-lg md:text-xl
+  - Body: text-sm md:text-base
+  - Small text: text-xs md:text-sm
+
+### Colors
+- Background: bg-white
+- Text: text-black
+- Accent: text-violet-600
+- Hover states:
+  - Links: hover:text-violet-600 hover:underline
+  - Boxes: hover:border-violet-500 hover:bg-violet-50
+  - Buttons: hover:bg-violet-500 hover:border-violet-500 hover:text-white
+
+### Layout
+- Max width: max-w-3xl
+- Padding:
+  - Container: px-2 md:px-4
+  - Vertical sections: py-6 md:py-12
+  - Content blocks: p-2 md:p-4 (boxes), p-3 md:p-6 (cards)
+- Spacing:
+  - Between sections: mt-8 md:mt-16
+  - Between items: gap-2 md:gap-4
+  - Text: space-y-2 md:space-y-4
+
+### Interactive Elements
+1. Navigation Links:
+   ```html
+   <a href="/path" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Link Text</a>
+   ```
+
+2. Content Cards:
+   ```html
+   <a href="/path" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors">
+     <div class="flex justify-between items-start">
+       <h2 class="text-lg md:text-xl font-semibold">Title</h2>
+       <time datetime="YYYY-MM-DD" class="text-xs md:text-sm text-violet-600"></time>
+     </div>
+     <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">Description</p>
+   </a>
+   ```
+
+3. Buttons:
+   ```html
+   <a href="/path" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
+     Button Text
+   </a>
+   ```
+
+4. Tags/Skills:
+   ```html
+   <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Tag Text</span>
+   ```
+
+## Content Guidelines
+
+### SEO & Indexing
+1. Meta Tags:
+   - Title: Clear and descriptive, include site name
+   - Description: 150-160 characters summarizing content
+   - Author: Always include author name
+   - Keywords: Relevant to content, include main topics
+2. Open Graph Tags:
+   - Type: website, article, or blog
+   - Title and Description
+   - Published time for articles
+   - Tags for articles
+3. Schema.org Markup:
+   - Person schema for personal pages
+   - BlogPosting schema for articles
+   - Blog schema for blog index
+   - Include all relevant metadata
+   - Keep articleBody excerpt informative
+4. Content Structure:
+   - Use semantic HTML (h1, h2, etc.)
+   - Include descriptive alt text for images
+   - Structure content with clear hierarchy
+   - Use descriptive anchor text for links
+5. LLM Optimization:
+   - Include clear topic sentences
+   - Use consistent terminology
+   - Structure content in logical sections
+   - Maintain clear context between sections
+6. Sitemaps:
+   - XML sitemap for search engines
+     - Include lastmod dates
+     - Set appropriate changefreq
+     - Assign meaningful priorities
+   - Update sitemap.xml when:
+     - Adding new pages
+     - Modifying existing URLs
+     - Changing content update frequency
+     - Adjusting page priorities
+7. LLM Guide:
+   - Maintain llm.txt for LLM indexing
+   - Update when:
+     - Adding new pages or sections
+     - Modifying content structure
+     - Updating professional info
+     - Adding new blog posts
+     - Adding new projects
+     - Changing tags or metadata
+   - Keep format consistent
+   - Ensure all dates are in ISO format
+   - Verify all URLs are correct
+
+### Blog Posts
+1. Location: `blog/posts/[slug].html`
+2. Format:
+   - Title: Clear and descriptive
+   - Date: ISO format (YYYY-MM-DD) in datetime attribute
+   - Content: Use semantic HTML with consistent spacing
+   - Tags: 2-4 relevant tags that describe the post's topics
+     - Add to both the full post and card views
+     - Confirm tag choices with the author
+     - Consider reusing existing tags when applicable
+   - Add to blog/index.html in reverse chronological order
+
+### Projects
+1. Required information:
+   - Title
+   - Date (ISO format)
+   - Description (1-2 sentences)
+   - Technologies/Tags (2-3 tags)
+   - Link to project
+2. Order: Most recent first
+3. Display: Full card is clickable
+
+### Dates
+1. Use ISO format in datetime attribute: YYYY-MM-DD
+2. Include dates.js script for relative time display
+3. Add data-relative attribute for automatic formatting
+
+## Common Patterns
+
+### Adding a New Blog Post
+1. Create new file in blog/posts/
+2. Add to blog listing in reverse chronological order
+3. Consider featuring on home page if recent/important, though it shall only feature the 3 most recent posts
+4. Use consistent card structure
+5. Use consistent date formatting (date it was created, and date it was last updated)
+
+### Adding a New Project
+1. Add to projects/index.html
+2. Include all required information
+3. Consider adding to home page featured projects, though it shall only feature the 3 most recent projects
+4. Use consistent card structure
+5. Use consistent date formatting (date it was created, and date it was last updated)
+
+### Navigation
+- Keep consistent across all pages
+- Current page link should be same style as others
+- All external links: add target="_blank" rel="noopener noreferrer"
+
+### Responsive Design
+- Use mobile-first approach with md: breakpoint
+- Test all pages at various screen sizes
+- Ensure text remains readable at all sizes 
+
+### Updating Meta Information
+1. When adding/updating content:
+   - Update meta tags in the page's head section
+   - Update Open Graph tags for social sharing
+   - Update Schema.org markup for search engines
+   - Update sitemap.xml lastmod dates
+   - Update llm.txt with new content
+2. When updating site structure:
+   - Update all URLs in sitemap.xml
+   - Update all URLs in llm.txt
+   - Update all internal links
+   - Update Schema.org markup breadcrumbs
+3. When updating professional info:
+   - Update about page content
+   - Update Schema.org Person markup
+   - Update llm.txt professional section
+   - Update resume.pdf if applicable

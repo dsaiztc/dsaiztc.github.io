@@ -1,67 +1,80 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Daniel Saiz Website</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.scrolly.min.js"></script>
-    <script src="js/skel.min.js"></script>
-    <script src="js/init.js"></script>
-    <noscript>
-        <link rel="stylesheet" href="css/skel.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style-desktop.css" />
-    </noscript>
-    <script>
-	    (function(i, s, o, g, r, a, m) {
-	        i['GoogleAnalyticsObject'] = r;
-	        i[r] = i[r] || function() {
-	            (i[r].q = i[r].q || []).push(arguments)
-	        }, i[r].l = 1 * new Date();
-	        a = s.createElement(o),
-	            m = s.getElementsByTagName(o)[0];
-	        a.async = 1;
-	        a.src = g;
-	        m.parentNode.insertBefore(a, m)
-	    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Saiz</title>
+    <meta name="description" content="Software Engineer focused on building reliable and scalable systems. Expertise in distributed systems, data engineering, and AI/ML applications.">
+    <meta name="author" content="Daniel Saiz">
+    <meta name="keywords" content="Software Engineering, Distributed Systems, Data Engineering, AI/ML, System Design">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Daniel Saiz - Software Engineer">
+    <meta property="og:description" content="Software Engineer focused on building reliable and scalable systems. Expertise in distributed systems, data engineering, and AI/ML applications.">
+    <meta property="og:site_name" content="Daniel Saiz">
 
-	    ga('create', 'UA-60518071-1', 'auto');
-	    ga('send', 'pageview');
+    <!-- Schema.org markup for LLMs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Daniel Saiz",
+        "jobTitle": "Software Engineer",
+        "description": "Software Engineer focused on building reliable and scalable systems",
+        "url": "https://dsaiztc.github.io",
+        "sameAs": [
+            "https://github.com/dsaiztc",
+            "https://linkedin.com/in/dsaiztc",
+            "https://x.com/dsaiztc"
+        ],
+        "knowsAbout": [
+            "Distributed Systems",
+            "Data Engineering",
+            "AI/ML",
+            "System Design",
+            "Cloud Infrastructure"
+        ]
+    }
     </script>
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="/manifest.json">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-	<meta name="theme-color" content="#ffffff">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
 </head>
-
-<body>
-
-    <!-- Nav -->
-    <nav id="nav">
-        <ul class="container">
-            <li><a href="#top">Top</a>
-            </li>
-            <li><a href="#portfolio">Projects</a>
-            </li>
-            <li><a href="#contact">Contact</a>
-            </li>
-        </ul>
+<body class="bg-white text-black">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
+<<<<<<< HEAD
     <!-- Home -->
     <div class="wrapper style1 first">
         <article class="container" id="top">
@@ -160,51 +173,205 @@
             <header>
                 <h2>Want to hire me?</h2>
                 <p>You can send me an <a href="mailto:Daniel Saiz <dsaiztc+job@gmail.com>?subject=Contact from Website">email</a> or:
-                </p>
+||||||| b4a2a7f
+    <!-- Home -->
+    <div class="wrapper style1 first">
+        <article class="container" id="top">
+            <div class="row">
+                <div class="4u">
+                    <span class="image fit"><img src="images/me.jpg" alt="" /></span>
+                </div>
+                <div class="8u">
+                    <header>
+                        <h1>Hi. I'm <strong>Daniel Saiz</strong>.</h1>
+                    </header>
+                    <p>A <strong>Telecommunications Engineer</strong> and a <strong>tech lover</strong>.</p>
+                    <a href="#portfolio" class="button big scrolly">See some of my recent projects</a>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="wrapper style3">
+        <article id="portfolio">
+            <header>
+                <h2>Take a brief look of my work.</h2>
+                <p>I love to learn by developing new projects.</p>
             </header>
-            <h3>Find me on ...</h3>
-            <ul class="social">
-                <li>
-                    <a href="http://github.com/dsaiztc" class="icon fa-github">
-                        <span class="label">Github</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://linkedin.com/in/dsaiztc/en" class="icon fa-linkedin">
-                        <span class="label">LinkedIn</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://angel.co/dsaiztc" class="icon fa-angellist">
-                        <span class="label">AngelList</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://twitter.com/dsaiztc" class="icon fa-twitter">
-                        <span class="label">Twitter</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://google.com/+DanielSaizLlarena" class="icon fa-google-plus">
-                        <span class="label">Google+</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://stackoverflow.com/users/3149679/dsaiztc" class="icon fa-stack-overflow">
-                        <span class="label">stackoverflow</span>
-                    </a>
-                </li>
-            </ul>
+            <div class="container">
+                <div class="row">
+                     <div class="4u">
+                        <article class="box style2">
+                            <a href="/AlumniUC3M/" class="image image-full"><img src="images/teleco_cohort.png" alt="" />
+                            </a>
+                            <h3><a href="/AlumniUC3M/">Scraping UC3M Alumni Database</a></h3>
+                            <p>Using some of the magic of <i>BeautifulSoup</i> to scrap Alumni data and export some interesting statistics about how long it takes to finish a degree in <a href="http://www.uc3m.es">UC3M</a> (Spain).</p>
+                        </article>
+                    </div>
+                    <div class="4u">
+                        <article class="box style2">
+                            <a href="/OSMDataWrangling/" class="image image-full"><img src="images/port05.png" alt="" />
+                            </a>
+                            <h3><a href="http://www.dsaiztc.com/OSMDataWrangling/">Data Wrangle OpenStreetMaps Data</a></h3>
+                            <p>Use data munging techniques to clean OpenStreetMap data, converting it from XML to JSON format, importing the clean file into a MongoDB database and run some queries against it.</p>
+                        </article>
+                    </div>
+                    <div class="4u">
+                        <article class="box style2">
+                            <a href="/NYCSubwayAnalysis/" class="image image-full"><img src="images/port04.png" alt="" />
+                            </a>
+                            <h3><a href="http://www.dsaiztc.com/NYCSubwayAnalysis/">Analyzing the NYC Subway Dataset</a></h3>
+                            <p>Evaluate whether or not more people ride the subway in New York City when it is raining than when it is not raining.
+                                <br>Analysis with different <strong>python</strong> tools like <i>pandas</i>, <i>stats</i> and <i>matplotlib</i>.</p>
+                        </article>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="4u">
+                        <article class="box style2">
+                            <a href="http://bultaco.es/en/" class="image image-full"><img src="images/port01.png" alt="" />
+                            </a>
+                            <h3><a href="http://www.uc3m.es/ss/Satellite/UC3MInstitucional/en/TextoMixta/1371208923202/">Biker Assistant</a></h3>
+                            <p>Android application that provides telemetry display, navigation and intelligent range estimation (Artificial Neural Networks) for
+                                <br><strong>Bultaco Motors</strong>.
+                                <br>Full text is available <a href="http://www.dsaiztc.com/PFC.pdf">here</a> (spanish).</p>
+                        </article>
+                    </div>
+                    <div class="4u">
+                        <article class="box style2">
+                            <a href="http://www.dsaiztc.com/secretsanta/" class="image image-full"><img src="images/port02.png" alt="" />
+                            </a>
+                            <h3><a href="http://www.dsaiztc.com/secretsanta/">Secret Santa App</a></h3>
+                            <p>Simple Android App for making Secret Santa draws on a smartphone.
+                                <br>Install the App, create a group, add participants and make a draw. All participants will be notified by email with their result.</p>
+                        </article>
+                    </div>
+                    <div class="4u">
+                        <article class="box style2">
+                            <a href="https://github.com/dsaiztc/MultilayerPerceptron" class="image image-full"><img src="images/port03.png" alt="" />
+                            </a>
+                            <h3><a href="https://github.com/dsaiztc/MultilayerPerceptron">MLP Java</a></h3>
+                            <p>Simple Java ANN Multilayer Perceptron (MLP).
+                                <br>Artificial Neural Network based on Multilayer Perceptron using EJML library for matrix management.
+                                <br>Open source project.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
             <footer>
-                <ul id="copyright">
-                    <li>&copy; 2016 Daniel Saiz</li>
-                    <li>Design: <a href="http://html5up.net">HTML5 UP</a>
-                    </li>
-                </ul>
+                <p>Do you want to know more?</p>
+                <a href="#contact" class="button big scrolly">Get in touch with me</a>
             </footer>
         </article>
     </div>
 
+    <!-- Contact -->
+    <div class="wrapper style4">
+        <article id="contact" class="container 75%">
+            <header>
+                <h2>Want to hire me?</h2>
+                <p>You can send me an <a href="mailto:Daniel Saiz <dsaiztc+job@gmail.com>?subject=Contact from Website">email</a> or:
+=======
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <section class="space-y-4 md:space-y-8">
+            <div class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">Hello, I'm Daniel</h1>
+                <p class="text-base md:text-lg leading-relaxed">
+                    Software Engineer focused on building reliable and scalable systems.
+>>>>>>> feat/revamp
+                </p>
+            </div>
+
+            <div class="flex space-x-2 md:space-x-4">
+                <a href="/blog" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-100 hover:text-violet-100 transition-colors">
+                    Read my blog
+                </a>
+                <a href="/projects" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
+                    View my projects
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Content -->
+        <section class="mt-8 md:mt-16 space-y-4 md:space-y-8">
+            <h2 class="text-xl md:text-2xl font-semibold">Latest Posts</h2>
+            <div class="grid gap-2 md:gap-4">
+                <!-- Placeholder for blog posts -->
+                <a href="/blog/posts/building-ai-powered-personal-finance-app.html" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-base md:text-lg font-semibold">Building an AI-Powered Personal Finance App</h3>
+                        <time datetime="2025-02-23" class="text-xs md:text-sm text-violet-600"></time>
+                    </div>
+                    <div class="mt-2 flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">AI/ML</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Personal Finance</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Double-Entry Accounting</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Latest Projects -->
+        <section class="mt-8 md:mt-16 space-y-4 md:space-y-8">
+            <h2 class="text-xl md:text-2xl font-semibold">Latest Projects</h2>
+            <div class="grid gap-2 md:gap-4">
+                <a href="/AlumniUC3M/" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-base md:text-lg font-semibold">UC3M Alumni Database Analysis</h3>
+                        <time datetime="2016-05-15" class="text-xs md:text-sm text-violet-600"></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Using BeautifulSoup to scrape Alumni data and analyze graduation timelines at Universidad Carlos III de Madrid.
+                    </p>
+                </a>
+
+                <a href="/OSMDataWrangling/" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-base md:text-lg font-semibold">OpenStreetMap Data Wrangling</h3>
+                        <time datetime="2016-04-20" class="text-xs md:text-sm text-violet-600"></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Data munging techniques to clean OpenStreetMap data, converting from XML to JSON format and importing into MongoDB.
+                    </p>
+                </a>
+
+                <a href="/NYCSubwayAnalysis/" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-base md:text-lg font-semibold">NYC Subway Dataset Analysis</h3>
+                        <time datetime="2016-03-10" class="text-xs md:text-sm text-violet-600"></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Statistical analysis to determine if weather affects NYC subway ridership, using Python tools like pandas, stats, and matplotlib.
+                    </p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2024</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
+<<<<<<< HEAD
 
 </html>
+||||||| b4a2a7f
+
+</html>
+=======
+</html>
+>>>>>>> feat/revamp

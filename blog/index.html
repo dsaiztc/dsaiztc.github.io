@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Daniel Saiz</title>
+    <meta name="description" content="Thoughts on software engineering, systems design, and technology. Articles about distributed systems, data engineering, and AI/ML applications.">
+    <meta name="author" content="Daniel Saiz">
+    <meta name="keywords" content="Software Engineering Blog, Systems Design, Technology, AI/ML, Data Engineering">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Blog - Daniel Saiz">
+    <meta property="og:description" content="Thoughts on software engineering, systems design, and technology. Articles about distributed systems, data engineering, and AI/ML applications.">
+    <meta property="og:site_name" content="Daniel Saiz">
+
+    <!-- Schema.org markup for LLMs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Daniel Saiz's Blog",
+        "description": "Thoughts on software engineering, systems design, and technology",
+        "url": "https://dsaiztc.github.io/blog",
+        "author": {
+            "@type": "Person",
+            "name": "Daniel Saiz"
+        },
+        "blogPost": [
+            {
+                "@type": "BlogPosting",
+                "headline": "Building an AI-Powered Personal Finance App",
+                "datePublished": "2025-02-23",
+                "url": "https://dsaiztc.github.io/blog/posts/building-ai-powered-personal-finance-app.html",
+                "keywords": ["AI/ML", "Personal Finance", "Double-Entry Accounting"]
+            }
+        ]
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <section class="space-y-4 md:space-y-8">
+            <div class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">Blog</h1>
+                <p class="text-base md:text-lg leading-relaxed">
+                    Thoughts on software engineering, systems design, and technology.
+                </p>
+            </div>
+
+            <!-- Blog Posts -->
+            <div class="space-y-4 md:space-y-8 mt-4 md:mt-8">
+                <a href="/blog/posts/building-ai-powered-personal-finance-app.html" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-lg md:text-xl font-semibold">Building an AI-Powered Personal Finance App</h2>
+                        <time datetime="2025-02-23" class="text-xs md:text-sm text-violet-600"></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Exploring the development of a personal finance app that combines double-entry accounting principles with AI-powered expense classification.
+                    </p>
+                    <div class="mt-2 md:mt-4 flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">AI/ML</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Personal Finance</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Double-Entry Accounting</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2024</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

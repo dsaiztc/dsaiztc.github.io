@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building an AI-Powered Personal Finance App - Daniel Saiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <article class="prose prose-lg space-y-4 md:space-y-8">
+            <header class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">Building an AI-Powered Personal Finance App</h1>
+                <time datetime="2025-02-23" class="text-xs md:text-sm text-violet-600"></time>
+            </header>
+
+            <div class="space-y-4 md:space-y-8 text-sm md:text-base leading-relaxed">
+                <p>
+                    I've embarked on a new project to solve a common yet persistent problem in personal finance: expense 
+                    classification. Despite trying numerous apps, including paid ones, I've never found one that truly 
+                    clicked with my needs. The goal? To create a system that makes expense tracking intuitive and 
+                    efficient, without requiring deep knowledge of accounting principles.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">The Double-Entry Inspiration</h2>
+                <p>
+                    While exploring different approaches to financial management, I discovered the concept of double-entry 
+                    accounting. What fascinated me was its elegant simplicity - with just a pen and paper, you can 
+                    reliably manage your entire financial life. However, as an engineer rather than an accountant, I 
+                    wanted to harness these principles without requiring users to understand the underlying accounting 
+                    system.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">The Solution: AI-Assisted Classification</h2>
+                <p>
+                    The approach I'm taking combines three key elements:
+                </p>
+                <ul class="list-disc pl-4 space-y-2">
+                    <li>A pre-configured set of default accounts and hierarchical categories for expenses and assets</li>
+                    <li>Automated transaction import from bank accounts (with manual entry as a backup)</li>
+                    <li>AI-powered classification that suggests 2-3 relevant categories per transaction</li>
+                </ul>
+                <p>
+                    The goal is to reduce the cognitive load of expense tracking. Instead of wondering "Where does this 
+                    expense go?" or "What categories do I have?", users can quickly select from AI-suggested categories, 
+                    making the classification process take just a couple of seconds per transaction.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">First Prototype: Surprisingly Effective</h2>
+                <p>
+                    For the initial prototype, I started with the basics: integrating a foundational model (Grok) with a 
+                    simple prompt that specifies the output format. Despite its simplicity, the results have been 
+                    remarkably promising. The AI consistently provides relevant category suggestions, making the 
+                    classification process both quick and "acceptably" accurate.
+                </p>
+
+                <div class="mt-8 space-y-2">
+                    <h2 class="text-xl md:text-2xl font-semibold">Tags</h2>
+                    <div class="flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">AI/ML</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Personal Finance</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Double-Entry Accounting</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2024</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

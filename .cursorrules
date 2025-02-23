@@ -91,6 +91,10 @@
    - Title: Clear and descriptive
    - Date: ISO format (YYYY-MM-DD) in datetime attribute
    - Content: Use semantic HTML with consistent spacing
+   - Tags: 2-4 relevant tags that describe the post's topics
+     - Add to both the full post and card views
+     - Confirm tag choices with the author
+     - Consider reusing existing tags when applicable
    - Add to blog/index.html in reverse chronological order
 
 ### Projects

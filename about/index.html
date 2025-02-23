@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Daniel Saiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-lg font-semibold hover:text-lime-600 transition-colors">Daniel Saiz</a>
+                <div class="space-x-8">
+                    <a href="/" class="hover:text-lime-600 transition-colors">Home</a>
+                    <a href="/blog" class="hover:text-lime-600 transition-colors">Blog</a>
+                    <a href="/projects" class="hover:text-lime-600 transition-colors">Projects</a>
+                    <a href="/about" class="hover:text-lime-600 transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-4 py-12">
+        <section class="space-y-8">
+            <div class="space-y-4">
+                <h1 class="text-4xl font-semibold">About Me</h1>
+            </div>
+
+            <div class="prose prose-lg space-y-6">
+                <p class="leading-relaxed">
+                    I'm a Software Engineer with a focus on building reliable and scalable systems. 
+                    With a background in Telecommunications Engineering, I bring a unique perspective 
+                    to solving complex technical challenges.
+                </p>
+
+                <h2 class="text-2xl font-semibold mt-8">Experience</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl">Senior Software Engineer</h3>
+                        <p class="text-lime-600">Current Role</p>
+                        <p class="mt-2">
+                            Working on distributed systems and cloud infrastructure.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-semibold mt-8">Education</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl">Telecommunications Engineering</h3>
+                        <p class="text-lime-600">Universidad Carlos III de Madrid</p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-semibold mt-8">Skills</h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 border border-black">Python</span>
+                    <span class="px-3 py-1 border border-black">Java</span>
+                    <span class="px-3 py-1 border border-black">Distributed Systems</span>
+                    <span class="px-3 py-1 border border-black">Cloud Infrastructure</span>
+                    <span class="px-3 py-1 border border-black">System Design</span>
+                </div>
+
+                <div class="mt-12">
+                    <a href="/resume.pdf" class="px-4 py-2 border border-black hover:bg-lime-500 hover:border-lime-500 hover:text-white transition-colors inline-block">
+                        View Resume
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-16">
+        <div class="max-w-3xl mx-auto px-4 py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-sm">
+                    © 2024 Daniel Saiz
+                </div>
+                <div class="space-x-4">
+                    <a href="https://github.com/dsaiztc" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Daniel Saiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-lg font-semibold hover:text-lime-600 transition-colors">Daniel Saiz</a>
+                <div class="space-x-8">
+                    <a href="/" class="hover:text-lime-600 transition-colors">Home</a>
+                    <a href="/blog" class="hover:text-lime-600 transition-colors">Blog</a>
+                    <a href="/projects" class="hover:text-lime-600 transition-colors">Projects</a>
+                    <a href="/about" class="hover:text-lime-600 transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-4 py-12">
+        <section class="space-y-8">
+            <div class="space-y-4">
+                <h1 class="text-4xl font-semibold">Blog</h1>
+                <p class="text-lg leading-relaxed">
+                    Thoughts on software engineering, systems design, and technology.
+                </p>
+            </div>
+
+            <!-- Blog Posts -->
+            <div class="space-y-8 mt-8">
+                <!-- Example post - you'll replace these with actual posts -->
+                <article class="border border-black p-6 hover:border-lime-500 transition-colors">
+                    <span class="text-sm text-lime-600">2024-02-23</span>
+                    <h2 class="text-xl font-semibold mt-2">
+                        <a href="/blog/posts/example.html" class="hover:text-lime-600 transition-colors">
+                            Coming soon...
+                        </a>
+                    </h2>
+                    <p class="mt-4 leading-relaxed">
+                        Stay tuned for upcoming posts about software engineering, system design, and more.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-16">
+        <div class="max-w-3xl mx-auto px-4 py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-sm">
+                    © 2024 Daniel Saiz
+                </div>
+                <div class="space-x-4">
+                    <a href="https://github.com/dsaiztc" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

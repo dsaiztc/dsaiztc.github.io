@@ -1,210 +1,91 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Daniel Saiz Website</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.scrolly.min.js"></script>
-    <script src="js/skel.min.js"></script>
-    <script src="js/init.js"></script>
-    <noscript>
-        <link rel="stylesheet" href="css/skel.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style-desktop.css" />
-    </noscript>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Saiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
     <script>
-	    (function(i, s, o, g, r, a, m) {
-	        i['GoogleAnalyticsObject'] = r;
-	        i[r] = i[r] || function() {
-	            (i[r].q = i[r].q || []).push(arguments)
-	        }, i[r].l = 1 * new Date();
-	        a = s.createElement(o),
-	            m = s.getElementsByTagName(o)[0];
-	        a.async = 1;
-	        a.src = g;
-	        m.parentNode.insertBefore(a, m)
-	    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-	    ga('create', 'UA-60518071-1', 'auto');
-	    ga('send', 'pageview');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
     </script>
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="/manifest.json">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-	<meta name="theme-color" content="#ffffff">
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
 </head>
-
-<body>
-
-    <!-- Nav -->
-    <nav id="nav">
-        <ul class="container">
-            <li><a href="#top">Top</a>
-            </li>
-            <li><a href="#portfolio">Projects</a>
-            </li>
-            <li><a href="#contact">Contact</a>
-            </li>
-        </ul>
+<body class="bg-white text-black">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-lg font-semibold hover:text-lime-600 transition-colors">Daniel Saiz</a>
+                <div class="space-x-8">
+                    <a href="/" class="hover:text-lime-600 transition-colors">Home</a>
+                    <a href="/blog" class="hover:text-lime-600 transition-colors">Blog</a>
+                    <a href="/projects" class="hover:text-lime-600 transition-colors">Projects</a>
+                    <a href="/about" class="hover:text-lime-600 transition-colors">About</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <!-- Home -->
-    <div class="wrapper style1 first">
-        <article class="container" id="top">
-            <div class="row">
-                <div class="4u">
-                    <span class="image fit"><img src="images/me.jpg" alt="" /></span>
-                </div>
-                <div class="8u">
-                    <header>
-                        <h1>Hi. I'm <strong>Daniel Saiz</strong>.</h1>
-                    </header>
-                    <p>A <strong>Telecommunications Engineer</strong> and a <strong>tech lover</strong>.</p>
-                    <a href="#portfolio" class="button big scrolly">See some of my recent projects</a>
-                </div>
-            </div>
-        </article>
-    </div>
-
-    <!-- Portfolio -->
-    <div class="wrapper style3">
-        <article id="portfolio">
-            <header>
-                <h2>Take a brief look of my work.</h2>
-                <p>I love to learn by developing new projects.</p>
-            </header>
-            <div class="container">
-                <div class="row">
-                     <div class="4u">
-                        <article class="box style2">
-                            <a href="/AlumniUC3M/" class="image image-full"><img src="images/teleco_cohort.png" alt="" />
-                            </a>
-                            <h3><a href="/AlumniUC3M/">Scraping UC3M Alumni Database</a></h3>
-                            <p>Using some of the magic of <i>BeautifulSoup</i> to scrap Alumni data and export some interesting statistics about how long it takes to finish a degree in <a href="http://www.uc3m.es">UC3M</a> (Spain).</p>
-                        </article>
-                    </div>
-                    <div class="4u">
-                        <article class="box style2">
-                            <a href="/OSMDataWrangling/" class="image image-full"><img src="images/port05.png" alt="" />
-                            </a>
-                            <h3><a href="http://www.dsaiztc.com/OSMDataWrangling/">Data Wrangle OpenStreetMaps Data</a></h3>
-                            <p>Use data munging techniques to clean OpenStreetMap data, converting it from XML to JSON format, importing the clean file into a MongoDB database and run some queries against it.</p>
-                        </article>
-                    </div>
-                    <div class="4u">
-                        <article class="box style2">
-                            <a href="/NYCSubwayAnalysis/" class="image image-full"><img src="images/port04.png" alt="" />
-                            </a>
-                            <h3><a href="http://www.dsaiztc.com/NYCSubwayAnalysis/">Analyzing the NYC Subway Dataset</a></h3>
-                            <p>Evaluate whether or not more people ride the subway in New York City when it is raining than when it is not raining.
-                                <br>Analysis with different <strong>python</strong> tools like <i>pandas</i>, <i>stats</i> and <i>matplotlib</i>.</p>
-                        </article>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="4u">
-                        <article class="box style2">
-                            <a href="http://bultaco.es/en/" class="image image-full"><img src="images/port01.png" alt="" />
-                            </a>
-                            <h3><a href="http://www.uc3m.es/ss/Satellite/UC3MInstitucional/en/TextoMixta/1371208923202/">Biker Assistant</a></h3>
-                            <p>Android application that provides telemetry display, navigation and intelligent range estimation (Artificial Neural Networks) for
-                                <br><strong>Bultaco Motors</strong>.
-                                <br>Full text is available <a href="http://www.dsaiztc.com/PFC.pdf">here</a> (spanish).</p>
-                        </article>
-                    </div>
-                    <div class="4u">
-                        <article class="box style2">
-                            <a href="http://www.dsaiztc.com/secretsanta/" class="image image-full"><img src="images/port02.png" alt="" />
-                            </a>
-                            <h3><a href="http://www.dsaiztc.com/secretsanta/">Secret Santa App</a></h3>
-                            <p>Simple Android App for making Secret Santa draws on a smartphone.
-                                <br>Install the App, create a group, add participants and make a draw. All participants will be notified by email with their result.</p>
-                        </article>
-                    </div>
-                    <div class="4u">
-                        <article class="box style2">
-                            <a href="https://github.com/dsaiztc/MultilayerPerceptron" class="image image-full"><img src="images/port03.png" alt="" />
-                            </a>
-                            <h3><a href="https://github.com/dsaiztc/MultilayerPerceptron">MLP Java</a></h3>
-                            <p>Simple Java ANN Multilayer Perceptron (MLP).
-                                <br>Artificial Neural Network based on Multilayer Perceptron using EJML library for matrix management.
-                                <br>Open source project.</p>
-                        </article>
-                    </div>
-                </div>
-            </div>
-            <footer>
-                <p>Do you want to know more?</p>
-                <a href="#contact" class="button big scrolly">Get in touch with me</a>
-            </footer>
-        </article>
-    </div>
-
-    <!-- Contact -->
-    <div class="wrapper style4">
-        <article id="contact" class="container 75%">
-            <header>
-                <h2>Want to hire me?</h2>
-                <p>You can send me an <a href="mailto:Daniel Saiz <dsaiztc+job@gmail.com>?subject=Contact from Website">email</a> or:
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-4 py-12">
+        <section class="space-y-8">
+            <div class="space-y-4">
+                <h1 class="text-4xl font-semibold">Hello, I'm Daniel</h1>
+                <p class="text-lg leading-relaxed">
+                    Software Engineer focused on building reliable and scalable systems.
                 </p>
-            </header>
-            <h3>Find me on ...</h3>
-            <ul class="social">
-                <li>
-                    <a href="http://github.com/dsaiztc" class="icon fa-github">
-                        <span class="label">Github</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://linkedin.com/in/dsaiztc/en" class="icon fa-linkedin">
-                        <span class="label">LinkedIn</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://angel.co/dsaiztc" class="icon fa-angellist">
-                        <span class="label">AngelList</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://twitter.com/dsaiztc" class="icon fa-twitter">
-                        <span class="label">Twitter</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://google.com/+DanielSaizLlarena" class="icon fa-google-plus">
-                        <span class="label">Google+</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://stackoverflow.com/users/3149679/dsaiztc" class="icon fa-stack-overflow">
-                        <span class="label">stackoverflow</span>
-                    </a>
-                </li>
-            </ul>
-            <footer>
-                <ul id="copyright">
-                    <li>&copy; 2016 Daniel Saiz</li>
-                    <li>Design: <a href="http://html5up.net">HTML5 UP</a>
-                    </li>
-                </ul>
-            </footer>
-        </article>
-    </div>
+            </div>
 
+            <div class="flex space-x-4">
+                <a href="/blog" class="px-4 py-2 border border-black hover:bg-lime-500 hover:border-lime-500 hover:text-white transition-colors">
+                    Read my blog
+                </a>
+                <a href="/projects" class="px-4 py-2 border border-black hover:bg-lime-500 hover:border-lime-500 hover:text-white transition-colors">
+                    View my projects
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Content -->
+        <section class="mt-16 space-y-8">
+            <h2 class="text-2xl font-semibold">Latest Posts</h2>
+            <div class="grid gap-4">
+                <!-- Placeholder for blog posts -->
+                <div class="p-4 border border-black hover:border-lime-500 transition-colors">
+                    <span class="text-sm text-lime-600">2024-02-23</span>
+                    <h3 class="text-lg font-semibold mt-1">Coming soon...</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-16">
+        <div class="max-w-3xl mx-auto px-4 py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-sm">
+                    © 2024 Daniel Saiz
+                </div>
+                <div class="space-x-4">
+                    <a href="https://github.com/dsaiztc" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
-
 </html>

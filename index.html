@@ -29,12 +29,12 @@
     <nav class="border-b border-black">
         <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
             <div class="flex justify-between items-center">
-                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 transition-colors">Daniel Saiz</a>
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
                 <div class="space-x-4 md:space-x-8">
-                    <a href="/" class="text-xs md:text-base hover:text-violet-600 transition-colors">Home</a>
-                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 transition-colors">Blog</a>
-                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 transition-colors">Projects</a>
-                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 transition-colors">About</a>
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
             </div>
 
             <div class="flex space-x-2 md:space-x-4">
-                <a href="/blog" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
+                <a href="/blog" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-100 hover:text-violet-100 transition-colors">
                     Read my blog
                 </a>
                 <a href="/projects" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
@@ -65,12 +65,12 @@
             <h2 class="text-xl md:text-2xl font-semibold">Latest Posts</h2>
             <div class="grid gap-2 md:gap-4">
                 <!-- Placeholder for blog posts -->
-                <div class="p-2 md:p-4 border border-black hover:border-violet-500 transition-colors">
+                <a href="/blog/posts/example.html" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
                     <div class="flex justify-between items-start">
                         <h3 class="text-base md:text-lg font-semibold">Coming soon...</h3>
                         <time datetime="2024-02-23" class="text-xs md:text-sm text-violet-600"></time>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 
@@ -78,47 +78,35 @@
         <section class="mt-8 md:mt-16 space-y-4 md:space-y-8">
             <h2 class="text-xl md:text-2xl font-semibold">Latest Projects</h2>
             <div class="grid gap-2 md:gap-4">
-                <div class="p-2 md:p-4 border border-black hover:border-violet-500 transition-colors">
+                <a href="/AlumniUC3M/" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
                     <div class="flex justify-between items-start">
-                        <h3 class="text-base md:text-lg font-semibold">
-                            <a href="/AlumniUC3M/" class="hover:text-violet-600 transition-colors">
-                                UC3M Alumni Database Analysis
-                            </a>
-                        </h3>
+                        <h3 class="text-base md:text-lg font-semibold">UC3M Alumni Database Analysis</h3>
                         <time datetime="2016-05-15" class="text-xs md:text-sm text-violet-600"></time>
                     </div>
                     <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
                         Using BeautifulSoup to scrape Alumni data and analyze graduation timelines at Universidad Carlos III de Madrid.
                     </p>
-                </div>
+                </a>
 
-                <div class="p-2 md:p-4 border border-black hover:border-violet-500 transition-colors">
+                <a href="/OSMDataWrangling/" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
                     <div class="flex justify-between items-start">
-                        <h3 class="text-base md:text-lg font-semibold">
-                            <a href="/OSMDataWrangling/" class="hover:text-violet-600 transition-colors">
-                                OpenStreetMap Data Wrangling
-                            </a>
-                        </h3>
+                        <h3 class="text-base md:text-lg font-semibold">OpenStreetMap Data Wrangling</h3>
                         <time datetime="2016-04-20" class="text-xs md:text-sm text-violet-600"></time>
                     </div>
                     <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
                         Data munging techniques to clean OpenStreetMap data, converting from XML to JSON format and importing into MongoDB.
                     </p>
-                </div>
+                </a>
 
-                <div class="p-2 md:p-4 border border-black hover:border-violet-500 transition-colors">
+                <a href="/NYCSubwayAnalysis/" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
                     <div class="flex justify-between items-start">
-                        <h3 class="text-base md:text-lg font-semibold">
-                            <a href="/NYCSubwayAnalysis/" class="hover:text-violet-600 transition-colors">
-                                NYC Subway Dataset Analysis
-                            </a>
-                        </h3>
+                        <h3 class="text-base md:text-lg font-semibold">NYC Subway Dataset Analysis</h3>
                         <time datetime="2016-03-10" class="text-xs md:text-sm text-violet-600"></time>
                     </div>
                     <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
                         Statistical analysis to determine if weather affects NYC subway ridership, using Python tools like pandas, stats, and matplotlib.
                     </p>
-                </div>
+                </a>
             </div>
         </section>
     </main>
@@ -131,9 +119,9 @@
                     © 2024 Daniel Saiz
                 </div>
                 <div class="space-x-2 md:space-x-4">
-                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
                 </div>
             </div>
         </div>

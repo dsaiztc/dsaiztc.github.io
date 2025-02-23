@@ -37,6 +37,10 @@ When creating new pages, ensure the Beam Analytics script is added in the `<head
 ></script>
 ```
 
+You can visit the dashboard at:
+- [Beam | Analytics](https://beamanalytics.io/dashboard/analytics)
+
+
 ## Project Structure
 
 ```

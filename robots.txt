@@ -1,5 +1,4 @@
-User-Agent: *
-Disallow: 
-Disallow: /
-Allow: /index.html
-Allow: /sitemap.xml
+User-agent: *
+Allow: /
+
+Sitemap: https://dsaiztc.com/sitemap.xml

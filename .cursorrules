@@ -85,6 +85,56 @@
 
 ## Content Guidelines
 
+### SEO & Indexing
+1. Meta Tags:
+   - Title: Clear and descriptive, include site name
+   - Description: 150-160 characters summarizing content
+   - Author: Always include author name
+   - Keywords: Relevant to content, include main topics
+2. Open Graph Tags:
+   - Type: website, article, or blog
+   - Title and Description
+   - Published time for articles
+   - Tags for articles
+3. Schema.org Markup:
+   - Person schema for personal pages
+   - BlogPosting schema for articles
+   - Blog schema for blog index
+   - Include all relevant metadata
+   - Keep articleBody excerpt informative
+4. Content Structure:
+   - Use semantic HTML (h1, h2, etc.)
+   - Include descriptive alt text for images
+   - Structure content with clear hierarchy
+   - Use descriptive anchor text for links
+5. LLM Optimization:
+   - Include clear topic sentences
+   - Use consistent terminology
+   - Structure content in logical sections
+   - Maintain clear context between sections
+6. Sitemaps:
+   - XML sitemap for search engines
+     - Include lastmod dates
+     - Set appropriate changefreq
+     - Assign meaningful priorities
+   - Update sitemap.xml when:
+     - Adding new pages
+     - Modifying existing URLs
+     - Changing content update frequency
+     - Adjusting page priorities
+7. LLM Guide:
+   - Maintain llm.txt for LLM indexing
+   - Update when:
+     - Adding new pages or sections
+     - Modifying content structure
+     - Updating professional info
+     - Adding new blog posts
+     - Adding new projects
+     - Changing tags or metadata
+   - Keep format consistent
+   - Ensure all dates are in ISO format
+   - Verify all URLs are correct
+
 ### Blog Posts
 1. Location: `blog/posts/[slug].html`
 2. Format:

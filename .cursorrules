@@ -177,6 +177,7 @@
 3. Consider adding to home page featured projects, though it shall only feature the 3 most recent projects
 4. Use consistent card structure
 5. Use consistent date formatting (date it was created, and date it was last updated)
+
 ### Navigation
 - Keep consistent across all pages
 - Current page link should be same style as others
@@ -186,3 +187,21 @@
 - Use mobile-first approach with md: breakpoint
 - Test all pages at various screen sizes
 - Ensure text remains readable at all sizes 
+
+### Updating Meta Information
+1. When adding/updating content:
+   - Update meta tags in the page's head section
+   - Update Open Graph tags for social sharing
+   - Update Schema.org markup for search engines
+   - Update sitemap.xml lastmod dates
+   - Update llm.txt with new content
+2. When updating site structure:
+   - Update all URLs in sitemap.xml
+   - Update all URLs in llm.txt
+   - Update all internal links
+   - Update Schema.org markup breadcrumbs
+3. When updating professional info:
+   - Update about page content
+   - Update Schema.org Person markup
+   - Update llm.txt professional section
+   - Update resume.pdf if applicable

@@ -17,12 +17,27 @@ function getRelativeTimeString(date) {
     }
 }
 
+function getYearsSince(date) {
+    const now = new Date();
+    const then = new Date(date);
+    const diffInYears = (now - then) / (1000 * 60 * 60 * 24 * 365.25); // Using 365.25 to account for leap years
+    return Math.floor(diffInYears);
+}
+
 function initializeRelativeDates() {
+    // Handle regular relative dates
     document.querySelectorAll('time').forEach(timeElement => {
         const isoDate = timeElement.getAttribute('datetime');
         const relativeDate = getRelativeTimeString(isoDate);
         timeElement.title = new Date(isoDate).toLocaleDateString();
         timeElement.textContent = relativeDate;
+    });
+
+    // Handle dynamic year calculations
+    document.querySelectorAll('[data-years-since]').forEach(element => {
+        const startDate = element.getAttribute('data-years-since');
+        const years = getYearsSince(startDate);
+        element.textContent = `${years}+`;
     });
 }
 

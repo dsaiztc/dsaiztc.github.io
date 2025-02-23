@@ -1,5 +1,22 @@
 # Website Structure and Style Guide
 
+## Author Information
+- Name: Daniel Saiz (not David Sáiz)
+- GitHub: dsaiztc
+- LinkedIn: dsaiztc
+- X (Twitter): dsaiztc
+
+## Content Management Rules
+- Always preserve existing content when adding new content
+- When updating index pages (blog, projects), add new content while keeping existing entries
+- For blog posts:
+  - Add new posts at the top (reverse chronological order)
+  - Keep all existing posts in the listing
+  - Only show 3 most recent posts on home page
+- For projects:
+  - Keep all existing projects
+  - Only show 3 most recent projects on home page
+
 ## Project Structure
 ```
 .
@@ -136,16 +153,37 @@
    - Verify all URLs are correct
 
 ### Blog Posts
-1. Location: `blog/posts/[slug].html`
-2. Format:
-   - Title: Clear and descriptive
-   - Date: ISO format (YYYY-MM-DD) in datetime attribute
-   - Content: Use semantic HTML with consistent spacing
-   - Tags: 2-4 relevant tags that describe the post's topics
-     - Add to both the full post and card views
-     - Confirm tag choices with the author
-     - Consider reusing existing tags when applicable
-   - Add to blog/index.html in reverse chronological order
+1. Template Usage:
+   - Always use `blog/posts/_template.html` as base for new posts
+   - Replace all $VARIABLE placeholders with actual content
+   - Keep the same HTML structure and class names
+   - Maintain consistent meta tags and Schema.org markup
+2. Required Structure:
+   - Full navigation bar with all site sections
+   - Article header with title and date
+   - Content with proper h2 headings
+   - Tags section at the bottom
+   - Full footer with social links
+3. Styling Requirements:
+   - Use JetBrains Mono font configuration
+   - Maintain consistent spacing classes
+   - Keep the same Tailwind CSS classes for components
+   - Follow the color scheme (black, white, violet-600)
+4. Meta Information:
+   - Include all Open Graph tags
+   - Complete Schema.org BlogPosting markup
+   - Use ISO date format (YYYY-MM-DD)
+   - Add all relevant keywords and tags
+5. Content Guidelines:
+   - Use semantic HTML structure
+   - Add descriptive h2 headings for sections
+   - Maintain consistent paragraph spacing
+   - Place tags at the bottom of the content
+6. When Editing:
+   - Preserve existing content structure
+   - Keep consistent styling across all posts
+   - Update meta information if content changes
+   - Maintain tag consistency with other posts
 
 ### Projects
 1. Required information:

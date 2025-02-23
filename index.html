@@ -27,7 +27,7 @@
 <body class="bg-white text-black">
     <!-- Navigation -->
     <nav class="border-b border-black">
-        <div class="max-w-3xl mx-auto px-4 py-4">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
             <div class="flex justify-between items-center">
                 <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 transition-colors">Daniel Saiz</a>
                 <div class="space-x-4 md:space-x-8">
@@ -41,31 +41,31 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-3xl mx-auto px-4 py-12">
-        <section class="space-y-8">
-            <div class="space-y-4">
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <section class="space-y-4 md:space-y-8">
+            <div class="space-y-2 md:space-y-4">
                 <h1 class="text-2xl md:text-4xl font-semibold">Hello, I'm Daniel</h1>
                 <p class="text-base md:text-lg leading-relaxed">
                     Software Engineer focused on building reliable and scalable systems.
                 </p>
             </div>
 
-            <div class="flex space-x-4">
-                <a href="/blog" class="text-xs md:text-base px-4 py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
+            <div class="flex space-x-2 md:space-x-4">
+                <a href="/blog" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
                     Read my blog
                 </a>
-                <a href="/projects" class="text-xs md:text-base px-4 py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
+                <a href="/projects" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
                     View my projects
                 </a>
             </div>
         </section>
 
         <!-- Featured Content -->
-        <section class="mt-16 space-y-8">
+        <section class="mt-8 md:mt-16 space-y-4 md:space-y-8">
             <h2 class="text-xl md:text-2xl font-semibold">Latest Posts</h2>
-            <div class="grid gap-4">
+            <div class="grid gap-2 md:gap-4">
                 <!-- Placeholder for blog posts -->
-                <div class="p-4 border border-black hover:border-violet-500 transition-colors">
+                <div class="p-2 md:p-4 border border-black hover:border-violet-500 transition-colors">
                     <div class="flex justify-between items-start">
                         <h3 class="text-base md:text-lg font-semibold">Coming soon...</h3>
                         <time datetime="2024-02-23" class="text-xs md:text-sm text-violet-600"></time>
@@ -73,11 +73,59 @@
                 </div>
             </div>
         </section>
+
+        <!-- Latest Projects -->
+        <section class="mt-8 md:mt-16 space-y-4 md:space-y-8">
+            <h2 class="text-xl md:text-2xl font-semibold">Latest Projects</h2>
+            <div class="grid gap-2 md:gap-4">
+                <div class="p-2 md:p-4 border border-black hover:border-violet-500 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-base md:text-lg font-semibold">
+                            <a href="/AlumniUC3M/" class="hover:text-violet-600 transition-colors">
+                                UC3M Alumni Database Analysis
+                            </a>
+                        </h3>
+                        <time datetime="2016-05-15" class="text-xs md:text-sm text-violet-600"></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Using BeautifulSoup to scrape Alumni data and analyze graduation timelines at Universidad Carlos III de Madrid.
+                    </p>
+                </div>
+
+                <div class="p-2 md:p-4 border border-black hover:border-violet-500 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-base md:text-lg font-semibold">
+                            <a href="/OSMDataWrangling/" class="hover:text-violet-600 transition-colors">
+                                OpenStreetMap Data Wrangling
+                            </a>
+                        </h3>
+                        <time datetime="2016-04-20" class="text-xs md:text-sm text-violet-600"></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Data munging techniques to clean OpenStreetMap data, converting from XML to JSON format and importing into MongoDB.
+                    </p>
+                </div>
+
+                <div class="p-2 md:p-4 border border-black hover:border-violet-500 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-base md:text-lg font-semibold">
+                            <a href="/NYCSubwayAnalysis/" class="hover:text-violet-600 transition-colors">
+                                NYC Subway Dataset Analysis
+                            </a>
+                        </h3>
+                        <time datetime="2016-03-10" class="text-xs md:text-sm text-violet-600"></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Statistical analysis to determine if weather affects NYC subway ridership, using Python tools like pandas, stats, and matplotlib.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-black mt-16">
-        <div class="max-w-3xl mx-auto px-4 py-8">
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
             <div class="flex justify-between items-center">
                 <div class="text-xs md:text-sm">
                     © 2024 Daniel Saiz

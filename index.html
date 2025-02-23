@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel Saiz</title>
-    <meta name="description" content="Software Engineer focused on building reliable and scalable systems. Expertise in distributed systems, data engineering, and AI/ML applications.">
+    <meta name="description" content="Software Engineer focused on building reliable and scalable systems. Exploring web development, AI, and personal growth through writing.">
     <meta name="author" content="Daniel Saiz">
-    <meta name="keywords" content="Software Engineering, Distributed Systems, Data Engineering, AI/ML, System Design">
+    <meta name="keywords" content="Software Engineering, Web Development, AI Development, Personal Website">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Daniel Saiz - Software Engineer">
-    <meta property="og:description" content="Software Engineer focused on building reliable and scalable systems. Expertise in distributed systems, data engineering, and AI/ML applications.">
+    <meta property="og:description" content="Software Engineer focused on building reliable and scalable systems. Exploring web development, AI, and personal growth through writing.">
     <meta property="og:site_name" content="Daniel Saiz">
 
     <!-- Schema.org markup for LLMs -->
@@ -29,36 +29,20 @@
             "https://x.com/dsaiztc"
         ],
         "knowsAbout": [
-            "Distributed Systems",
-            "Data Engineering",
-            "AI/ML",
-            "System Design",
-            "Cloud Infrastructure"
+            "Web Development",
+            "AI Development",
+            "Software Engineering",
+            "System Design"
         ]
     }
     </script>
 
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                },
-            },
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'JetBrains Mono', monospace;
-        }
-    </style>
-    <script src="/js/dates.js"></script>
+    <script src="/js/dates.js" defer></script>
 </head>
-<body class="bg-white text-black">
+<body class="bg-white text-black font-mono">
     <!-- Navigation -->
     <nav class="border-b border-black">
         <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
@@ -98,12 +82,29 @@
         <section class="mt-8 md:mt-16 space-y-4 md:space-y-8">
             <h2 class="text-xl md:text-2xl font-semibold">Latest Posts</h2>
             <div class="grid gap-2 md:gap-4">
-                <!-- Placeholder for blog posts -->
+                <a href="/blog/posts/website-revamp-and-ai-development.html" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-base md:text-lg font-semibold">Website Revamp and AI Development Experience</h3>
+                        <time datetime="2025-02-23" class="text-xs md:text-sm text-violet-600" data-relative></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Reflecting on my website revamp journey and experience with AI-assisted development using Cursor IDE.
+                    </p>
+                    <div class="mt-2 flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">website development</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">AI development</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">personal growth</span>
+                    </div>
+                </a>
+
                 <a href="/blog/posts/building-ai-powered-personal-finance-app.html" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
                     <div class="flex justify-between items-start">
                         <h3 class="text-base md:text-lg font-semibold">Building an AI-Powered Personal Finance App</h3>
-                        <time datetime="2025-02-23" class="text-xs md:text-sm text-violet-600"></time>
+                        <time datetime="2025-02-23" class="text-xs md:text-sm text-violet-600" data-relative></time>
                     </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Exploring the development of a personal finance app that combines double-entry accounting principles with AI-powered expense classification.
+                    </p>
                     <div class="mt-2 flex flex-wrap gap-1 md:gap-2">
                         <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">AI/ML</span>
                         <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Personal Finance</span>
@@ -120,7 +121,7 @@
                 <a href="/AlumniUC3M/" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
                     <div class="flex justify-between items-start">
                         <h3 class="text-base md:text-lg font-semibold">UC3M Alumni Database Analysis</h3>
-                        <time datetime="2016-05-15" class="text-xs md:text-sm text-violet-600"></time>
+                        <time datetime="2016-05-15" class="text-xs md:text-sm text-violet-600" data-relative></time>
                     </div>
                     <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
                         Using BeautifulSoup to scrape Alumni data and analyze graduation timelines at Universidad Carlos III de Madrid.
@@ -130,7 +131,7 @@
                 <a href="/OSMDataWrangling/" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
                     <div class="flex justify-between items-start">
                         <h3 class="text-base md:text-lg font-semibold">OpenStreetMap Data Wrangling</h3>
-                        <time datetime="2016-04-20" class="text-xs md:text-sm text-violet-600"></time>
+                        <time datetime="2016-04-20" class="text-xs md:text-sm text-violet-600" data-relative></time>
                     </div>
                     <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
                         Data munging techniques to clean OpenStreetMap data, converting from XML to JSON format and importing into MongoDB.
@@ -140,7 +141,7 @@
                 <a href="/NYCSubwayAnalysis/" class="block p-2 md:p-4 border border-black hover:border-violet-500 hover:bg-violet-50 transition-colors">
                     <div class="flex justify-between items-start">
                         <h3 class="text-base md:text-lg font-semibold">NYC Subway Dataset Analysis</h3>
-                        <time datetime="2016-03-10" class="text-xs md:text-sm text-violet-600"></time>
+                        <time datetime="2016-03-10" class="text-xs md:text-sm text-violet-600" data-relative></time>
                     </div>
                     <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
                         Statistical analysis to determine if weather affects NYC subway ridership, using Python tools like pandas, stats, and matplotlib.

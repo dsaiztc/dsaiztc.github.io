@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Daniel Saiz</title>
-    <meta name="description" content="Thoughts on software engineering, systems design, and technology. Articles about distributed systems, data engineering, and AI/ML applications.">
+    <meta name="description" content="Thoughts on software engineering, systems design, and technology. Articles about web development, AI, and personal experiences.">
     <meta name="author" content="Daniel Saiz">
-    <meta name="keywords" content="Software Engineering Blog, Systems Design, Technology, AI/ML, Data Engineering">
+    <meta name="keywords" content="Software Engineering Blog, Web Development, AI Development, Personal Website">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Blog - Daniel Saiz">
-    <meta property="og:description" content="Thoughts on software engineering, systems design, and technology. Articles about distributed systems, data engineering, and AI/ML applications.">
+    <meta property="og:description" content="Thoughts on software engineering, systems design, and technology. Articles about web development, AI, and personal experiences.">
     <meta property="og:site_name" content="Daniel Saiz">
 
     <!-- Schema.org markup for LLMs -->
@@ -29,6 +29,13 @@
         "blogPost": [
             {
                 "@type": "BlogPosting",
+                "headline": "Website Revamp and AI Development Experience",
+                "datePublished": "2025-02-23",
+                "url": "https://dsaiztc.github.io/blog/posts/website-revamp-and-ai-development.html",
+                "keywords": ["website development", "AI development", "personal growth"]
+            },
+            {
+                "@type": "BlogPosting",
                 "headline": "Building an AI-Powered Personal Finance App",
                 "datePublished": "2025-02-23",
                 "url": "https://dsaiztc.github.io/blog/posts/building-ai-powered-personal-finance-app.html",
@@ -38,27 +45,12 @@
     }
     </script>
 
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                },
-            },
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'JetBrains Mono', monospace;
-        }
-    </style>
-    <script src="/js/dates.js"></script>
+    <script src="/js/dates.js" defer></script>
 </head>
-<body class="bg-white text-black">
+<body class="bg-white text-black font-mono">
     <!-- Navigation -->
     <nav class="border-b border-black">
         <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
@@ -86,10 +78,27 @@
 
             <!-- Blog Posts -->
             <div class="space-y-4 md:space-y-8 mt-4 md:mt-8">
+                <!-- New Blog Post -->
+                <a href="/blog/posts/website-revamp-and-ai-development.html" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-lg md:text-xl font-semibold">Website Revamp and AI Development Experience</h2>
+                        <time datetime="2025-02-23" class="text-xs md:text-sm text-violet-600" data-relative></time>
+                    </div>
+                    <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
+                        Reflecting on my website revamp journey and experience with AI-assisted development using Cursor IDE.
+                    </p>
+                    <div class="mt-2 md:mt-4 flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">website development</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">AI development</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">personal growth</span>
+                    </div>
+                </a>
+
+                <!-- Existing Blog Post -->
                 <a href="/blog/posts/building-ai-powered-personal-finance-app.html" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors">
                     <div class="flex justify-between items-start">
                         <h2 class="text-lg md:text-xl font-semibold">Building an AI-Powered Personal Finance App</h2>
-                        <time datetime="2025-02-23" class="text-xs md:text-sm text-violet-600"></time>
+                        <time datetime="2025-02-23" class="text-xs md:text-sm text-violet-600" data-relative></time>
                     </div>
                     <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">
                         Exploring the development of a personal finance app that combines double-entry accounting principles with AI-powered expense classification.

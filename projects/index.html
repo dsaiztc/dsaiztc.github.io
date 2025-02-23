@@ -22,6 +22,7 @@
             font-family: 'JetBrains Mono', monospace;
         }
     </style>
+    <script src="/js/dates.js"></script>
 </head>
 <body class="bg-white text-black">
     <!-- Navigation -->
@@ -51,28 +52,34 @@
 
             <!-- Projects Grid -->
             <div class="grid gap-8 mt-8">
-                <!-- Example project - you'll replace these with actual projects -->
                 <article class="border border-black p-6 hover:border-lime-500 transition-colors">
-                    <h2 class="text-xl font-semibold">
-                        <a href="https://github.com/dsaiztc/MultilayerPerceptron" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">
-                            MLP Java
-                        </a>
-                    </h2>
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-xl font-semibold">
+                            <a href="/AlumniUC3M/" class="hover:text-lime-600 transition-colors">
+                                UC3M Alumni Database Analysis
+                            </a>
+                        </h2>
+                        <time datetime="2016-05-15" class="text-sm text-lime-600" data-relative></time>
+                    </div>
                     <p class="mt-4 leading-relaxed">
-                        A Java implementation of an Artificial Neural Network based on Multilayer Perceptron using EJML library for matrix management.
+                        Using BeautifulSoup to scrape Alumni data and analyze graduation timelines at Universidad Carlos III de Madrid.
                     </p>
                     <div class="mt-4 flex gap-2">
-                        <span class="text-sm border border-black px-2 py-1">Java</span>
-                        <span class="text-sm border border-black px-2 py-1">Machine Learning</span>
+                        <span class="text-sm border border-black px-2 py-1">Python</span>
+                        <span class="text-sm border border-black px-2 py-1">BeautifulSoup</span>
+                        <span class="text-sm border border-black px-2 py-1">Data Analysis</span>
                     </div>
                 </article>
 
                 <article class="border border-black p-6 hover:border-lime-500 transition-colors">
-                    <h2 class="text-xl font-semibold">
-                        <a href="/OSMDataWrangling/" class="hover:text-lime-600 transition-colors">
-                            OSM Data Wrangling
-                        </a>
-                    </h2>
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-xl font-semibold">
+                            <a href="/OSMDataWrangling/" class="hover:text-lime-600 transition-colors">
+                                OpenStreetMap Data Wrangling
+                            </a>
+                        </h2>
+                        <time datetime="2016-04-20" class="text-sm text-lime-600" data-relative></time>
+                    </div>
                     <p class="mt-4 leading-relaxed">
                         Data munging techniques to clean OpenStreetMap data, converting from XML to JSON format and importing into MongoDB.
                     </p>
@@ -80,6 +87,82 @@
                         <span class="text-sm border border-black px-2 py-1">Python</span>
                         <span class="text-sm border border-black px-2 py-1">MongoDB</span>
                         <span class="text-sm border border-black px-2 py-1">Data Analysis</span>
+                    </div>
+                </article>
+
+                <article class="border border-black p-6 hover:border-lime-500 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-xl font-semibold">
+                            <a href="/NYCSubwayAnalysis/" class="hover:text-lime-600 transition-colors">
+                                NYC Subway Dataset Analysis
+                            </a>
+                        </h2>
+                        <time datetime="2016-03-10" class="text-sm text-lime-600" data-relative></time>
+                    </div>
+                    <p class="mt-4 leading-relaxed">
+                        Statistical analysis to determine if weather affects NYC subway ridership, using Python tools like pandas, stats, and matplotlib.
+                    </p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-sm border border-black px-2 py-1">Python</span>
+                        <span class="text-sm border border-black px-2 py-1">pandas</span>
+                        <span class="text-sm border border-black px-2 py-1">Data Visualization</span>
+                    </div>
+                </article>
+
+                <article class="border border-black p-6 hover:border-lime-500 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-xl font-semibold">
+                            <a href="http://www.uc3m.es/ss/Satellite/UC3MInstitucional/en/TextoMixta/1371208923202/" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">
+                                Biker Assistant
+                            </a>
+                        </h2>
+                        <time datetime="2015-09-01" class="text-sm text-lime-600" data-relative></time>
+                    </div>
+                    <p class="mt-4 leading-relaxed">
+                        Android application for Bultaco Motors providing telemetry display, navigation, and intelligent range estimation using Neural Networks.
+                        <a href="/PFC.pdf" class="text-lime-600 hover:underline">(Full text in Spanish)</a>
+                    </p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-sm border border-black px-2 py-1">Android</span>
+                        <span class="text-sm border border-black px-2 py-1">Java</span>
+                        <span class="text-sm border border-black px-2 py-1">Neural Networks</span>
+                    </div>
+                </article>
+
+                <article class="border border-black p-6 hover:border-lime-500 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-xl font-semibold">
+                            <a href="/secretsanta/" class="hover:text-lime-600 transition-colors">
+                                Secret Santa App
+                            </a>
+                        </h2>
+                        <time datetime="2015-12-15" class="text-sm text-lime-600" data-relative></time>
+                    </div>
+                    <p class="mt-4 leading-relaxed">
+                        Android app for organizing Secret Santa events. Create groups, add participants, and automatically notify everyone by email.
+                    </p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-sm border border-black px-2 py-1">Android</span>
+                        <span class="text-sm border border-black px-2 py-1">Java</span>
+                    </div>
+                </article>
+
+                <article class="border border-black p-6 hover:border-lime-500 transition-colors">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-xl font-semibold">
+                            <a href="https://github.com/dsaiztc/MultilayerPerceptron" class="hover:text-lime-600 transition-colors" target="_blank" rel="noopener noreferrer">
+                                MLP Java
+                            </a>
+                        </h2>
+                        <time datetime="2015-11-01" class="text-sm text-lime-600" data-relative></time>
+                    </div>
+                    <p class="mt-4 leading-relaxed">
+                        A Java implementation of an Artificial Neural Network based on Multilayer Perceptron using EJML library for matrix management.
+                    </p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-sm border border-black px-2 py-1">Java</span>
+                        <span class="text-sm border border-black px-2 py-1">Machine Learning</span>
+                        <span class="text-sm border border-black px-2 py-1">Open Source</span>
                     </div>
                 </article>
             </div>

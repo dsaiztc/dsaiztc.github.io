@@ -22,6 +22,7 @@
             font-family: 'JetBrains Mono', monospace;
         }
     </style>
+    <script src="/js/dates.js"></script>
 </head>
 <body class="bg-white text-black">
     <!-- Navigation -->
@@ -53,12 +54,14 @@
             <div class="space-y-8 mt-8">
                 <!-- Example post - you'll replace these with actual posts -->
                 <article class="border border-black p-6 hover:border-lime-500 transition-colors">
-                    <span class="text-sm text-lime-600">2024-02-23</span>
-                    <h2 class="text-xl font-semibold mt-2">
-                        <a href="/blog/posts/example.html" class="hover:text-lime-600 transition-colors">
-                            Coming soon...
-                        </a>
-                    </h2>
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-xl font-semibold">
+                            <a href="/blog/posts/example.html" class="hover:text-lime-600 transition-colors">
+                                Coming soon...
+                            </a>
+                        </h2>
+                        <time datetime="2024-02-23" class="text-sm text-lime-600"></time>
+                    </div>
                     <p class="mt-4 leading-relaxed">
                         Stay tuned for upcoming posts about software engineering, system design, and more.
                     </p>

@@ -13,9 +13,20 @@
   - Add new posts at the top (reverse chronological order)
   - Keep all existing posts in the listing
   - Only show 3 most recent posts on home page
+  - Update all required files:
+    1. Create post using _template.html
+    2. Update blog/index.html
+    3. Update index.html (if among 3 most recent)
+    4. Update llm.txt
+    5. Update sitemap.xml with new URL and lastmod dates
 - For projects:
   - Keep all existing projects
   - Only show 3 most recent projects on home page
+  - Update all required files:
+    1. Add project to projects/index.html
+    2. Update index.html (if among 3 most recent)
+    3. Update llm.txt
+    4. Update sitemap.xml with new URL and lastmod dates
 
 ## Project Structure
 ```
@@ -203,11 +214,27 @@
 ## Common Patterns
 
 ### Adding a New Blog Post
-1. Create new file in blog/posts/
+1. Create new file in blog/posts/ using _template.html as base
 2. Add to blog listing in reverse chronological order
-3. Consider featuring on home page if recent/important, though it shall only feature the 3 most recent posts
-4. Use consistent card structure
-5. Use consistent date formatting (date it was created, and date it was last updated)
+3. Update home page if among 3 most recent posts
+4. Update metadata files:
+   - Add entry to llm.txt in Blog Posts section
+   - Add URL to sitemap.xml
+   - Update lastmod dates in sitemap.xml for affected pages
+5. Use consistent date formatting (YYYY-MM-DD) across all files:
+   - Post metadata
+   - Schema.org markup
+   - Open Graph tags
+   - llm.txt
+   - sitemap.xml
+6. Verify all required sections:
+   - Meta tags and descriptions
+   - Open Graph tags
+   - Schema.org markup
+   - Navigation structure
+   - Content structure
+   - Tags section
+   - Footer links
 
 ### Adding a New Project
 1. Add to projects/index.html

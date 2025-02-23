@@ -12,8 +12,13 @@ Description: Personal website featuring blog posts about software engineering, p
 - Projects (/projects/) - Showcase of software development projects
 
 ### Blog Posts
-1. Building an AI-Powered Personal Finance App (/blog/posts/building-ai-powered-personal-finance-app.html)
-   - Published: 2024-02-23
+1. Website Revamp and AI Development Experience (/blog/posts/website-revamp-and-ai-development.html)
+   - Published: 2025-02-23
+   - Tags: website development, AI development, personal growth
+   - Description: Reflecting on my website revamp journey and experience with AI-assisted development using Cursor IDE
+
+2. Building an AI-Powered Personal Finance App (/blog/posts/building-ai-powered-personal-finance-app.html)
+   - Published: 2025-02-23
    - Tags: AI/ML, Personal Finance, Double-Entry Accounting
    - Description: Development of a personal finance app combining double-entry accounting with AI-powered expense classification
 

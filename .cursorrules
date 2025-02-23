@@ -1,0 +1,132 @@
+# Website Structure and Style Guide
+
+## Project Structure
+```
+.
+├── index.html          # Home page
+├── blog/              
+│   └── index.html     # Blog listing
+├── projects/
+│   └── index.html     # Projects showcase
+├── about/
+│   └── index.html     # About me page
+├── js/
+│   └── dates.js       # Date formatting utilities
+└── resume.pdf         # Resume file
+```
+
+## Tech Stack
+- HTML5 for structure
+- Tailwind CSS via CDN for styling
+- JetBrains Mono font via CDN
+- Vanilla JavaScript for date handling
+- No build step required
+
+## Design System
+
+### Typography
+- Font: JetBrains Mono (monospace)
+- Sizes:
+  - Headings: 
+    - H1: text-2xl md:text-4xl
+    - H2: text-xl md:text-2xl
+    - H3: text-lg md:text-xl
+  - Body: text-sm md:text-base
+  - Small text: text-xs md:text-sm
+
+### Colors
+- Background: bg-white
+- Text: text-black
+- Accent: text-violet-600
+- Hover states:
+  - Links: hover:text-violet-600 hover:underline
+  - Boxes: hover:border-violet-500 hover:bg-violet-50
+  - Buttons: hover:bg-violet-500 hover:border-violet-500 hover:text-white
+
+### Layout
+- Max width: max-w-3xl
+- Padding:
+  - Container: px-2 md:px-4
+  - Vertical sections: py-6 md:py-12
+  - Content blocks: p-2 md:p-4 (boxes), p-3 md:p-6 (cards)
+- Spacing:
+  - Between sections: mt-8 md:mt-16
+  - Between items: gap-2 md:gap-4
+  - Text: space-y-2 md:space-y-4
+
+### Interactive Elements
+1. Navigation Links:
+   ```html
+   <a href="/path" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Link Text</a>
+   ```
+
+2. Content Cards:
+   ```html
+   <a href="/path" class="block border border-black p-3 md:p-6 hover:border-violet-500 hover:bg-violet-50 transition-colors">
+     <div class="flex justify-between items-start">
+       <h2 class="text-lg md:text-xl font-semibold">Title</h2>
+       <time datetime="YYYY-MM-DD" class="text-xs md:text-sm text-violet-600"></time>
+     </div>
+     <p class="mt-2 md:mt-4 text-sm md:text-base leading-relaxed">Description</p>
+   </a>
+   ```
+
+3. Buttons:
+   ```html
+   <a href="/path" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
+     Button Text
+   </a>
+   ```
+
+4. Tags/Skills:
+   ```html
+   <span class="text-xs md:text-sm border border-black px-1 md:px-2 py-0.5 md:py-1">Tag Text</span>
+   ```
+
+## Content Guidelines
+
+### Blog Posts
+1. Location: `blog/posts/[slug].html`
+2. Format:
+   - Title: Clear and descriptive
+   - Date: ISO format (YYYY-MM-DD) in datetime attribute
+   - Content: Use semantic HTML with consistent spacing
+   - Add to blog/index.html in reverse chronological order
+
+### Projects
+1. Required information:
+   - Title
+   - Date (ISO format)
+   - Description (1-2 sentences)
+   - Technologies/Tags (2-3 tags)
+   - Link to project
+2. Order: Most recent first
+3. Display: Full card is clickable
+
+### Dates
+1. Use ISO format in datetime attribute: YYYY-MM-DD
+2. Include dates.js script for relative time display
+3. Add data-relative attribute for automatic formatting
+
+## Common Patterns
+
+### Adding a New Blog Post
+1. Create new file in blog/posts/
+2. Add to blog listing in reverse chronological order
+3. Consider featuring on home page if recent/important, though it shall only feature the 3 most recent posts
+
+### Adding a New Project
+1. Add to projects/index.html
+2. Include all required information
+3. Consider adding to home page featured projects, though it shall only feature the 3 most recent projects
+4. Use consistent card structure
+
+### Navigation
+- Keep consistent across all pages
+- Current page link should be same style as others
+- All external links: add target="_blank" rel="noopener noreferrer"
+
+### Responsive Design
+- Use mobile-first approach with md: breakpoint
+- Test all pages at various screen sizes
+- Ensure text remains readable at all sizes 

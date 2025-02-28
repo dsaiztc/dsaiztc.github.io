@@ -2,15 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://dsaiztc.com/</loc>
-        <lastmod>2025-02-23</lastmod>
+        <lastmod>2025-02-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://dsaiztc.com/blog/</loc>
-        <lastmod>2025-02-23</lastmod>
+        <lastmod>2025-02-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://dsaiztc.com/blog/posts/navigating-openai-json-structured-outputs.html</loc>
+        <lastmod>2025-02-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://dsaiztc.com/blog/posts/website-revamp-and-ai-development.html</loc>

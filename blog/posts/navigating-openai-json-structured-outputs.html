@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating OpenAI's JSON-Structured Outputs: Limitations and Solutions - Daniel Saiz</title>
+    <meta name="description" content="A practical guide to working with OpenAI's JSON-structured outputs, including common limitations and solutions based on real-world experience.">
+    <meta name="author" content="Daniel Saiz">
+    <meta name="keywords" content="OpenAI API, JSON Schema, Pydantic, structured outputs, API limitations">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Navigating OpenAI's JSON-Structured Outputs: Limitations and Solutions">
+    <meta property="og:description" content="A practical guide to working with OpenAI's JSON-structured outputs, including common limitations and solutions based on real-world experience.">
+    <meta property="article:published_time" content="2025-02-28">
+    <!-- Add tags dynamically -->
+    <meta property="article:tag" content="OpenAI API">
+    <meta property="article:tag" content="JSON Schema">
+    <meta property="article:tag" content="Pydantic">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Navigating OpenAI's JSON-Structured Outputs: Limitations and Solutions",
+        "datePublished": "2025-02-28",
+        "author": {
+            "@type": "Person",
+            "name": "Daniel Saiz"
+        },
+        "keywords": ["OpenAI API", "JSON Schema", "Pydantic", "structured outputs", "API limitations"],
+        "articleBody": "A practical guide to working with OpenAI's JSON-structured outputs, including common limitations and solutions based on real-world experience."
+    }
+    </script>
+
+    <!-- Beam Analytics -->
+    <script
+      src="https://beamanalytics.b-cdn.net/beam.min.js"
+      data-token="d62099d2-5537-46f3-836a-033a81ac69a6"
+      async
+    ></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black font-mono">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <article class="prose prose-lg space-y-4 md:space-y-8">
+            <header class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">Navigating OpenAI's JSON-Structured Outputs: Limitations and Solutions</h1>
+                <time datetime="2025-02-28" class="text-xs md:text-sm text-violet-600"></time>
+            </header>
+
+            <div class="space-y-4 md:space-y-8 text-sm md:text-base leading-relaxed">
+                <p>
+                    I recently encountered some limitations and unexpected behaviors while working with <a class="text-violet-600 hover:text-violet-800 hover:underline transition-colors" href="https://platform.openai.com/docs/guides/structured-outputs?example=structured-data" target="_blank" rel="noopener noreferrer">OpenAI's JSON-structured outputs</a>. After spending some time troubleshooting, I decided to document these findings for future reference and to help others who might face similar challenges.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">JSON Schema Limitations</h2>
+                <p>
+                    The first issue I discovered is that OpenAI's implementation doesn't have full support for JSON Schema. There are certain features that simply don't work as expected.  You can check the <a class="text-violet-600 hover:text-violet-800 hover:underline transition-colors" href="https://platform.openai.com/docs/guides/structured-outputs/supported-schemas" target="_blank" rel="noopener noreferrer">supported schema features in OpenAI's documentation</a>.
+                </p>
+
+                <h3 class="text-lg md:text-xl font-semibold">Default Values</h3>
+
+                <p>One specific limitation is the inability to use default values in your JSON Schema or Pydantic model. When you include defaults, the API call fails, even though this is a standard feature in JSON Schema.</p>
+                
+                <p>
+                    I found a helpful <a class="text-violet-600 hover:text-violet-800 hover:underline transition-colors" href="https://engineering.fractional.ai/openai-structured-output-fixes" target="_blank" rel="noopener noreferrer">blog post by the team at Fractional AI</a> that addresses this issue. They've developed a wrapper implementation that allows you to use your predefined Pydantic models as you normally would. The wrapper converts your models to a JSON schema that's compatible with OpenAI's API and then converts the responses back to your original model format.
+                </p>
+                
+                <p>
+                    This solution worked exceptionally well for my use case, though I needed to make a few tweaks since I was using self-references in my Pydantic models. With some minor adjustments, I got it working perfectly.
+                </p>
+
+                <h3 class="text-lg md:text-xl font-semibold">additionalProperties: false</h3>
+
+                <p>
+                    Another important consideration is setting <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">additionalProperties: false</code> <strong>in all objects</strong> within your JSON schema. This prevents the model from including unexpected fields in the response that aren't defined in your schema.
+                </p>
+
+                <p>
+                    Without this setting, you might get an API call error like this (where <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">YourSchemaName</code> is the name of your Pydantic model or JSON schema):
+                </p>
+
+
+
+                <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto">
+                    <code class="text-gray-800">
+openai.BadRequestError: Error code: 400 - {
+    'error': {
+        'message': "Invalid schema for response_format 'YourSchemaName': In context=(), 'additionalProperties' is required to be supplied and to be false.",
+        'type': 'invalid_request_error',
+        'param': 'response_format',
+        'code': None
+    }
+}</code></pre>
+
+                <p>
+                    Here's an example of how to properly set this in your schema:
+                </p>
+
+                <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>{
+    "type": "object",
+    "properties": {
+        "name": { "type": "string" },
+        "age": { "type": "integer" }
+    },
+    "required": ["name", "age"],
+    "additionalProperties": false
+}</code></pre>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Debugging Empty Parsed Objects</h2>
+                <p>
+                    Another issue that puzzled me for quite some time involved making API calls that appeared successful (returning <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">200 OK</code> responses) but resulted in empty parsed objects. When debugging, I could see that the response contained JSON data, but when trying to access the <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">parsed</code> attribute of the message, it returned <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">None</code>.
+                </p>
+                
+                <p>
+                    After some debugging, I discovered that my JSON answer didn't fully conform to the JSON schema I had provided. The specific issue was that I hadn't properly specified the 'strict: true' field in my JSON schema when making the OpenAI API call.
+                </p>
+
+                <pre class="bg-gray-100 p-4 rounded overflow-x-auto"><code>response = client.beta.chat.completions.parse(
+    messages=messages,
+    response_format=response_format,
+    **kwargs,
+)
+
+# This is the JSON response from the API, not fully conforming to the JSON schema
+response = response.choices[0].message.content
+# This is the parsed response, but because it doesn't conform to the JSON schema, it's None
+parsed_response = response.choices[0].message.parsed
+</code></pre>
+                
+                <p>
+                    The key takeaway here is to always set <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">strict: true</code> in your JSON schema definition. Without this specification, you might get a successful API response (<code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">200 OK</code>) but with no content in the <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">parsed</code> object.
+                </p>
+
+                <p>
+                    One important side note: if the API call cannot generate a valid answer (i.e., a JSON object that conforms to your schema), you'll receive an explicit error rather than a silent failure. This is actually a helpful feature, as it prevents you from proceeding with invalid data and makes debugging easier.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Best Practices for Working with JSON-Structured Outputs</h2>
+                <p>
+                    When working with OpenAI's JSON-structured outputs, there are several important limitations and requirements to keep in mind:
+                </p>
+                
+                <p>
+                    First, be aware of the JSON schema limitations in the OpenAI API. If you have existing Pydantic models or JSON schemas that use default values, you'll need to use a wrapper to adapt these schemas before making the API call, as defaults aren't supported by the API.
+                </p>
+
+                <p>
+                    Remember to add <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">additionalProperties: false</code> to all the objects within your JSON schema.
+                </p>
+
+                <p>
+                    Make sure to pass <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">strict: true</code> in your JSON schema definition (this appears in all examples in OpenAI docs, but it's not mentioned explicitly what happens if you don't, i.e. that you'll get a <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">parsed = None</code> response).
+                </p>
+
+                <p>
+                    Finally, before implementing any solution, verify two important details: first, check that the specific OpenAI model you plan to use supports JSON structured outputs. Second, confirm that you have access to this model in your current usage tier by reviewing the <a href="https://platform.openai.com/docs/guides/rate-limits#usage-tiers" class="text-violet-600 hover:underline" target="_blank" rel="noopener noreferrer">usage tiers documentation</a>. This can save you time and frustration during implementation.
+                </p>
+
+                
+
+                <div class="mt-8 space-y-2">
+                    <h2 class="text-xl md:text-2xl font-semibold">Tags</h2>
+                    <div class="flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">OpenAI API</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">JSON Schema</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Pydantic</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2025</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

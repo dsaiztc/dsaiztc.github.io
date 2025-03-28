@@ -28,32 +28,37 @@ Description: Personal website featuring blog posts about software engineering, p
    - Description: Development of a personal finance app combining double-entry accounting with AI-powered expense classification
 
 ### Projects
-1. [UC3M Alumni Database Analysis](/AlumniUC3M/)
+1. [ByWeeks](https://byweeks.com)
+   - Date: 2025-03-27
+   - Tags: Web App, Time Management, Productivity, PWA
+   - Description: A minimalistic time blocking web app that helps you make time for what's important
+
+2. [UC3M Alumni Database Analysis](/AlumniUC3M/)
    - Date: 2016-05-15
    - Tags: Python, BeautifulSoup, Data Analysis
    - Description: Using BeautifulSoup to scrape Alumni data and analyze graduation timelines at Universidad Carlos III de Madrid
 
-2. [OpenStreetMap Data Wrangling](/OSMDataWrangling/)
+3. [OpenStreetMap Data Wrangling](/OSMDataWrangling/)
    - Date: 2016-04-20
    - Tags: Python, MongoDB, Data Analysis
    - Description: Data munging techniques to clean OpenStreetMap data, converting from XML to JSON format and importing into MongoDB
 
-3. [NYC Subway Dataset Analysis](/NYCSubwayAnalysis/)
+4. [NYC Subway Dataset Analysis](/NYCSubwayAnalysis/)
    - Date: 2016-03-10
    - Tags: Python, pandas, Data Visualization
    - Description: Statistical analysis to determine if weather affects NYC subway ridership
 
-4. [Biker Assistant](/PFC.pdf)
+5. [Biker Assistant](/PFC.pdf)
    - Date: 2015-09-01
    - Tags: Android, Java, Neural Networks
    - Description: Android application for Bultaco Motors providing telemetry display, navigation, and intelligent range estimation
 
-5. [Secret Santa App](/secretsanta/)
+6. [Secret Santa App](/secretsanta/)
    - Date: 2015-12-15
    - Tags: Android, Java
    - Description: Android app for organizing Secret Santa events with automatic email notifications
 
-6. [MLP Java](https://github.com/dsaiztc/MultilayerPerceptron)
+7. [MLP Java](https://github.com/dsaiztc/MultilayerPerceptron)
    - Date: 2015-11-01
    - Tags: Java, Machine Learning, Open Source
    - Description: Java implementation of an Artificial Neural Network using EJML library

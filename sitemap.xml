@@ -8,9 +8,15 @@
     </url>
     <url>
         <loc>https://dsaiztc.com/blog/</loc>
-        <lastmod>2025-02-28</lastmod>
+        <lastmod>2025-03-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://dsaiztc.com/blog/posts/make-time-for-what-matters.html</loc>
+        <lastmod>2025-03-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://dsaiztc.com/blog/posts/navigating-openai-json-structured-outputs.html</loc>

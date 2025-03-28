@@ -12,17 +12,22 @@ Description: Personal website featuring blog posts about software engineering, p
 - [Projects](/projects/) - Showcase of software development projects
 
 ### Blog Posts
-1. [Navigating OpenAI's JSON-Structured Outputs: Limitations and Solutions](/blog/posts/navigating-openai-json-structured-outputs.html)
+1. [Make time for what matters](/blog/posts/make-time-for-what-matters.html)
+   - Published: 2025-03-27
+   - Tags: Time Management, Productivity, Web App
+   - Description: How I discovered time blocking during my college days and created a minimalistic web app to help make time for what's important
+
+2. [Navigating OpenAI's JSON-Structured Outputs: Limitations and Solutions](/blog/posts/navigating-openai-json-structured-outputs.html)
    - Published: 2025-02-28
    - Tags: OpenAI API, JSON Schema, Pydantic
    - Description: A practical guide to working with OpenAI's JSON-structured outputs, including common limitations and solutions based on real-world experience
 
-2. [Website Revamp and AI Development Experience](/blog/posts/website-revamp-and-ai-development.html)
+3. [Website Revamp and AI Development Experience](/blog/posts/website-revamp-and-ai-development.html)
    - Published: 2025-02-23
    - Tags: website development, AI development, personal growth
    - Description: Reflecting on my website revamp journey and experience with AI-assisted development using Cursor IDE
 
-3. [Building an AI-Powered Personal Finance App](/blog/posts/building-ai-powered-personal-finance-app.html)
+4. [Building an AI-Powered Personal Finance App](/blog/posts/building-ai-powered-personal-finance-app.html)
    - Published: 2025-02-23
    - Tags: AI/ML, Personal Finance, Double-Entry Accounting
    - Description: Development of a personal finance app combining double-entry accounting with AI-powered expense classification

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make time for what matters - Daniel Saiz</title>
+    <meta name="description" content="How I discovered time blocking during my college days and created a minimalistic web app to help make time for what's important.">
+    <meta name="author" content="Daniel Saiz">
+    <meta name="keywords" content="Time Management, Time Blocking, Productivity, Web App, PWA, ByWeeks">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Make time for what matters">
+    <meta property="og:description" content="How I discovered time blocking during my college days and created a minimalistic web app to help make time for what's important.">
+    <meta property="article:published_time" content="2025-03-27">
+    <!-- Add tags dynamically -->
+    <meta property="article:tag" content="Time Management">
+    <meta property="article:tag" content="Productivity">
+    <meta property="article:tag" content="Web App">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Make time for what matters",
+        "datePublished": "2025-03-27",
+        "author": {
+            "@type": "Person",
+            "name": "Daniel Saiz"
+        },
+        "keywords": ["Time Management", "Time Blocking", "Productivity", "Web App", "PWA", "ByWeeks"],
+        "articleBody": "How I discovered time blocking during my college days and created a minimalistic web app to help make time for what's important."
+    }
+    </script>
+
+    <!-- Beam Analytics -->
+    <script
+      src="https://beamanalytics.b-cdn.net/beam.min.js"
+      data-token="d62099d2-5537-46f3-836a-033a81ac69a6"
+      async
+    ></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black font-mono">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <article class="prose prose-lg space-y-4 md:space-y-8">
+            <header class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">Make time for what matters</h1>
+                <time datetime="2025-03-27" class="text-xs md:text-sm text-violet-600" data-relative></time>
+            </header>
+
+            <div class="space-y-4 md:space-y-8 text-sm md:text-base leading-relaxed">
+                <p>
+                    At one point during my college days I had 21 final exams in a two weeks period. Some of these exams were 4+ hours and would make 100% of the final score for a given subject matter, others were 1-2 hour long.
+                </p>
+                
+                <p>
+                    That's when I discovered the magic of time blocking.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">The Challenge of Making Time</h2>
+                <p>
+                    There's been times where I've been more strict with myself, but nowadays it's hard not to time block every second of the day, in order to MAKE TIME for the things that matter:
+                </p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>Working a full-time job (40h/week)</li>
+                    <li>Getting enough sleep (8h/day)</li>
+                    <li>Working out (1h/day, min 4day/week)</li>
+                    <li>Quality time with family</li>
+                    <li>Hobbies, etc.</li>
+                </ul>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Building a Simple Solution</h2>
+                <p>
+                    I've vibe coded a simple web app to create time blocks for the week. I built it for myself, but a friend of mine saw it and was also interested, so I published it.
+                </p>
+                
+                <p>
+                    It's free and works offline (it's a PWA, so you can install it via Chrome).
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">How ByWeeks Works</h2>
+                <p>
+                    For a given week, you can create time blocks associated to "themes" (e.g. Work, Personal, Sleep) and sub-themes.
+                </p>
+                
+                <p>
+                    The idea is to consciously MAKE TIME for the things you want.
+                </p>
+
+                <p>
+                    My use case is pretty simple. I have a somewhat flexible work schedule, but I still have to put 40h/week. On top of that, I want to prioritize getting enough sleep and working out.
+                </p>
+
+                <p>
+                    Then see how much time is left for other stuff, and plan accordingly.
+                </p>
+
+                <p>
+                    "I have too many books in the shelf, but no time to read them"... but the reality is that I'm choosing not to make time for that (either consciously or unconsciously).
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Retrospective Planning</h2>
+                <p>
+                    You can also use it in retrospective, as in:
+                </p>
+
+                <p>
+                    I had planned to work out 9:00-10:00, but I didn't. What did I do instead? Was it a conscious decision? Past weeks could then serve as a reference for how good you're sticking to your plan or habits.
+                </p>
+
+                <div class="my-6 bg-violet-50 p-4 border border-violet-200 rounded">
+                    <h3 class="text-lg font-semibold mb-2">Try ByWeeks</h3>
+                    <p class="mb-4">A minimalistic time blocking app that helps you make time for what's important.</p>
+                    <a href="https://byweeks.com" target="_blank" rel="noopener noreferrer" class="inline-block px-4 py-2 bg-violet-600 text-white font-medium rounded hover:bg-violet-700 transition-colors">Visit ByWeeks</a>
+                </div>
+
+                <p>
+                    Anyway, feel free to give it a try. Let me know what you think.
+                </p>
+
+                <p>
+                    I'll be using it myself, so if there's a couple more people that find it useful, then that's worth the trouble =)
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Why Time Blocking Works</h2>
+                <p>
+                    Time blocking is effective because it forces you to confront the reality of your finite time. When you visually map out your week, you can immediately see if you're trying to fit 30 hours of activities into a 24-hour day.
+                </p>
+                
+                <p>
+                    It's also a powerful way to ensure you're allocating time to your priorities rather than letting urgent but less important tasks consume your week.
+                </p>
+
+                <div class="mt-8 space-y-2">
+                    <h2 class="text-xl md:text-2xl font-semibold">Tags</h2>
+                    <div class="flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Time Management</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Productivity</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Web App</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2025</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

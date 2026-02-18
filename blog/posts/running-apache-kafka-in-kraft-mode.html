@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Apache Kafka in KRaft mode - Daniel Saiz</title>
+    <meta name="description" content="What I wish I had known when migrating Kafka clusters from ZooKeeper to KRaft mode. An introductory overview of KRaft architecture and what actually changes.">
+    <meta name="author" content="Daniel Saiz">
+    <meta name="keywords" content="Apache Kafka, KRaft, ZooKeeper, Distributed Systems, Streaming, Raft consensus">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Running Apache Kafka in KRaft mode">
+    <meta property="og:description" content="What I wish I had known when migrating Kafka clusters from ZooKeeper to KRaft mode. An introductory overview of KRaft architecture and what actually changes.">
+    <meta property="article:published_time" content="2026-02-18">
+    <meta property="article:tag" content="Apache Kafka">
+    <meta property="article:tag" content="KRaft">
+    <meta property="article:tag" content="Distributed Systems">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Running Apache Kafka in KRaft mode",
+        "datePublished": "2026-02-18",
+        "author": {
+            "@type": "Person",
+            "name": "Daniel Saiz"
+        },
+        "keywords": ["Apache Kafka", "KRaft", "ZooKeeper", "Distributed Systems", "Streaming"],
+        "articleBody": "What I wish I had known when migrating Kafka clusters from ZooKeeper to KRaft mode. An introductory overview of KRaft architecture and what actually changes."
+    }
+    </script>
+
+    <!-- Beam Analytics -->
+    <script
+      src="https://beamanalytics.b-cdn.net/beam.min.js"
+      data-token="d62099d2-5537-46f3-836a-033a81ac69a6"
+      async
+    ></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black font-mono">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <article class="prose prose-lg space-y-4 md:space-y-8">
+            <header class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">Running Apache Kafka in KRaft mode</h1>
+                <time datetime="2026-02-18" class="text-xs md:text-sm text-violet-600"></time>
+            </header>
+
+            <div class="space-y-4 md:space-y-8 text-sm md:text-base leading-relaxed">
+
+                <!-- TL;DR -->
+                <div class="border-l-2 border-black pl-4 space-y-2">
+                    <p class="font-semibold">TL;DR</p>
+                    <p>
+                        The <em>controller role</em> that was previously (i.e. when running in <em>ZooKeeper mode</em>) held by one of the <em>brokers</em> in the <em>cluster</em> is now held by this <em>KRaft controller</em>. But it isn't a single <em>node</em>, but an ensemble of them (for resiliency purposes, 3 or 5 members typically), where a <em>leader</em> (called the <em>active controller</em>) is elected amongst them (using the <em>Raft algorithm</em>). The <em>cluster metadata</em> now lives in an <em>internal topic</em>, which is managed by the <em>active controller</em>, and replicated to all <em>brokers</em>.
+                    </p>
+                </div>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Why this post</h2>
+
+                <p>
+                    My first experience with managing <a class="text-violet-600 hover:text-violet-800 hover:underline transition-colors" href="https://kafka.apache.org" target="_blank" rel="noopener noreferrer">Apache Kafka</a> was a few years back now. I had just moved teams at <em>Shopify</em> and I was now managing the <em>Kafka clusters</em> for the whole company. Easy, right? My previous team had been in charge of the <em>Apache Flink</em> platform, so I wasn't entirely new to streaming, but it was nonetheless daunting.
+                </p>
+
+                <p>
+                    I don't consider myself an expert nowadays, even though my team at <em>New Relic</em> (my employer as of this writing) manages <a class="text-violet-600 hover:text-violet-800 hover:underline transition-colors" href="https://github.com/dttung2905/kafka-in-production?tab=readme-ov-file#new-relic" target="_blank" rel="noopener noreferrer">dozens of them</a>. But as mentioned, there was a time when I was a total newbie.
+                </p>
+
+                <p>How did I ramp up? You might ask.</p>
+
+                <p>
+                    Well, my onboarding consisted of leading a project to migrate our <em>Kafka</em> clusters to <em>KRaft mode</em>, and ditch <em>ZooKeeper</em>.
+                </p>
+
+                <p>So I first had to learn about:</p>
+
+                <ol class="list-decimal list-inside space-y-1 pl-2">
+                    <li>How <em>Kafka</em> works</li>
+                    <li>What's <em>ZooKeeper</em></li>
+                    <li>How does <em>Kafka</em> use <em>ZooKeeper</em></li>
+                    <li>Why future versions of <em>Kafka</em> are getting rid of <em>ZooKeeper</em></li>
+                    <li>What does <em>Kafka</em> look like <strong>without <em>ZooKeeper</em></strong>, i.e. what's <strong><em>KRaft mode</em></strong></li>
+                </ol>
+
+                <p>
+                    So I'm writing this for anyone out there that's struggling to understand <strong>what does it mean to run <em>Kafka</em> in <em>KRaft mode</em></strong>.
+                </p>
+
+                <p class="text-xs md:text-sm text-gray-500">
+                    Side note: when I started working on this (circa Jan 2024), we had just migrated to <em>Kafka v3.6</em>, and <em>v3.7</em> was supposed to be the latest <em>Kafka</em> version to support <em>ZooKeeper mode</em>. Finally, it was <em>Kafka v3.9</em> (released Nov 2024) the latest to do so, and starting <em>v4.0</em> (released March 2025) <em>ZooKeeper mode</em> is no longer supported.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">What is Apache Kafka</h2>
+
+                <p>
+                    There are many answers to this, and I think everyone uses the ones that resonate most with them.
+                </p>
+
+                <p>
+                    For me, the simplest answer is "a distributed log". But that's just what stuck to my head, so let's try to explain how it works:
+                </p>
+
+                <ul class="list-disc list-inside space-y-2 pl-2">
+                    <li>You <em>produce</em> and <em>consume</em> <em>messages</em> to/from <em>topics</em></li>
+                    <li>You can horizontally scale by dividing your <em>topics</em> into <em>partitions</em> (you can have just one, or hundreds)</li>
+                    <li>In a <em>Kafka cluster</em> you have few or many <em>brokers</em>, which are just "workers" processing <em>produce/consume</em> requests (and holding the data on disk, typically)</li>
+                    <li>You can horizontally scale the <em>cluster</em> by adding more <em>brokers</em> — that way your <em>topic partitions</em> can be processed in parallel, spreading them across as many <em>brokers</em> as there are</li>
+                    <li>Each <em>topic partition</em> is replicated for resilience (typically with a <em>replication factor</em>, or RF, of 3), distributed amongst <em>brokers</em> (and ideally <em>availability zones</em>), so if a <em>broker</em> goes down a new <em>partition leader</em> is elected and you can continue processing data</li>
+                    <li>You can have many independent <em>consumers</em> for the same <em>topic</em> (called <em>consumer groups</em>), each with its own offset tracking (i.e. how far along it has processed)</li>
+                    <li>You can configure how long you want the <em>topic</em> data to live on disk — could be days or minutes</li>
+                </ul>
+
+                <p>
+                    This lets you do things like decoupling <em>producers</em> and <em>consumers</em>, i.e. let <em>Kafka</em> act as a buffer to absorb bursts. Or distribute data amongst many services. Or both. It's great for high-throughput applications, but you can also tweak it for low-latency scenarios.
+                </p>
+
+                <p>
+                    Worth mentioning: consuming (or, better named, fetching) the latest data reads from the <em>page cache</em> directly — no disk lookup required, so it's <em>fast</em>. And you don't saturate your disks, which are already busy writing incoming data plus replicating <em>partition replicas</em> from other <em>brokers</em>.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">How does Kafka work in ZooKeeper mode</h2>
+
+                <p>
+                    <em>Kafka brokers</em> operate as part of a <em>cluster</em>. Within a <em>cluster</em>, one <em>broker</em> also functions as the <strong><em>cluster controller</em></strong> (elected automatically). That <em>controller</em> is responsible for administrative operations, including:
+                </p>
+
+                <ul class="list-disc list-inside space-y-1 pl-2">
+                    <li>Assigning <em>partition replicas</em> to <em>brokers</em></li>
+                    <li>Monitoring for <em>broker</em> failures</li>
+                    <li>Electing <em>partition leaders</em></li>
+                    <li>Creating/deleting <em>topics</em></li>
+                </ul>
+
+                <p>
+                    For that reason, it also <strong>manages the <em>cluster metadata</em>, which lives on <em>ZooKeeper</em></strong>.
+                </p>
+
+                <p>
+                    <em>ZooKeeper</em> has another important function (apart from storing the <em>cluster metadata</em>): <strong>electing a <em>controller</em></strong> (using the <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">/controller</code> <em>znode</em>).
+                </p>
+
+                <p>While <em>ZooKeeper</em>'s design works well in general, it comes with some limitations for <em>Kafka</em>:</p>
+
+                <ul class="list-disc list-inside space-y-3 pl-2">
+                    <li>
+                        The <em>controller</em> has to load all <em>cluster metadata</em> from <em>ZooKeeper</em> before it becomes <em>active</em>, which <strong>can take several seconds in <em>clusters</em> with a large number of <em>partitions</em></strong>. This matters during <em>controller failover</em> (e.g. a <em>node</em> shuts down and a different <em>broker</em> becomes the <em>controller</em>).
+                    </li>
+                    <li>
+                        When a <em>broker</em> leaves the <em>cluster</em>, the <em>controller</em> finds a new <em>leader</em> for all <em>partitions</em> that need one, and then <strong>must communicate the leadership changes to every <em>broker</em> that holds <em>replicas</em> for those <em>partitions</em></strong>. Since every <em>broker</em> also maintains a <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">MetadataCache</code> (a map of all <em>brokers</em> and all <em>replicas</em> in the <em>cluster</em>), the <em>controller</em> ends up sending leadership-change updates to <em>all brokers</em> in the <em>cluster</em>.
+                    </li>
+                </ul>
+
+                <h2 class="text-xl md:text-2xl font-semibold">How does Kafka work in KRaft mode</h2>
+
+                <p>
+                    <em>ZooKeeper</em> is removed. That means two things need a new home:
+                </p>
+
+                <ul class="list-disc list-inside space-y-1 pl-2">
+                    <li>the <em>cluster metadata</em></li>
+                    <li>the mechanism to elect a <em>controller</em></li>
+                </ul>
+
+                <p>
+                    The <strong><em>cluster metadata</em> now lives in a <em>Kafka</em> log</strong> — a single-<em>partition</em> internal <em>topic</em> called <code class="bg-gray-100 text-gray-800 rounded px-1 py-0.5">__cluster_metadata</code>, managed by the <em>controller</em>. This topic is not exposed for direct access or management through the <em>admin client</em>.
+                </p>
+
+                <p>
+                    The <em>controller</em> is now a <strong><em>Raft quorum</em></strong> — an ensemble of <em>nodes</em> where there's an <em>active controller</em> (the <em>leader</em>) and <em>followers</em>. For production-ready workloads, these are dedicated <em>nodes</em> rather than <em>brokers</em>.
+                </p>
+
+                <ul class="list-disc list-inside space-y-2 pl-2">
+                    <li>The <em>KRaft controller quorum</em> is formed by all <em>nodes</em> with a <em>controller role</em> — they can participate in <em>leader election</em> voting and propose themselves as <em>leaders</em></li>
+                    <li>The remaining <em>nodes</em> in the <em>cluster</em> are <em>brokers</em>, which participate as <em>observers</em>: the <em>cluster metadata log</em> is also replicated to every <em>broker</em></li>
+                </ul>
+
+                <p>
+                    This directly addresses the limitations from <em>ZooKeeper mode</em>: <em>controller failover</em> no longer requires loading all metadata from scratch, and the number of <em>partitions</em> in a <em>cluster</em> is no longer a bottleneck of the same order of magnitude.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">About nomenclature</h2>
+
+                <p>
+                    I've added this section because the terminology was <strong>very confusing</strong> when I first started, so I hope it helps others.
+                </p>
+
+                <p>
+                    <em>KRaft</em> is short for <em>Kafka-Raft</em> — named after the <em>Raft consensus algorithm</em> used by the <em>KRaft controller quorum</em> to elect a <em>leader</em>.
+                </p>
+
+                <p>The <strong><em>KRaft controller</em></strong> is also referred to as:</p>
+
+                <ul class="list-disc list-inside space-y-1 pl-2">
+                    <li><em>KRaft controller quorum</em></li>
+                    <li><em>Quorum controller</em></li>
+                    <li><em>Metadata quorum</em></li>
+                </ul>
+
+                <p>
+                    These all refer to the same thing. I prefer <em>KRaft controller quorum</em> or simply <em>KRaft controller</em>.
+                </p>
+
+                <p>
+                    When referring to which mode <em>Kafka</em> is running in, the correct nomenclature (in my opinion) is:
+                </p>
+
+                <ul class="list-disc list-inside space-y-1 pl-2">
+                    <li><em>Kafka</em> running in <em>ZooKeeper mode</em></li>
+                    <li><em>Kafka</em> running in <em>KRaft mode</em></li>
+                </ul>
+
+                <p>
+                    I've seen it referenced as "<em>Kafka</em> with <em>ZooKeeper</em>" or "<em>Kafka</em> with <em>KRaft</em>", but the above is less confusing and matches how it's officially referenced.
+                </p>
+
+                <div class="mt-8 space-y-2">
+                    <h2 class="text-xl md:text-2xl font-semibold">Tags</h2>
+                    <div class="flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Apache Kafka</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">KRaft</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Distributed Systems</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2026</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

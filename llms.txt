@@ -12,66 +12,76 @@ Description: Personal website featuring blog posts about software engineering, p
 - [Projects](/projects/) - Showcase of software development projects
 
 ### Blog Posts
-1. [Running Apache Kafka in KRaft mode](/blog/posts/running-apache-kafka-in-kraft-mode.html)
-   - Published: 2026-02-18
-   - Tags: Apache Kafka, KRaft, Distributed Systems
-   - Description: What I wish I had known when migrating Kafka clusters from ZooKeeper to KRaft mode. An introductory overview of KRaft architecture and what actually changes.
+- [Introducing dev: a CLI for navigating your projects](/blog/posts/introducing-dev.html)
+  - Published: 2026-02-18
+  - Tags: CLI, Go, Developer Tools
+  - Description: How I built dev, a small CLI tool that enforces an opinionated directory structure for all your repos and lets you fuzzy-navigate between them.
 
-2. [Make time for what matters](/blog/posts/make-time-for-what-matters.html)
-   - Published: 2025-03-27
-   - Tags: Time Management, Productivity, Web App
-   - Description: How I discovered time blocking during my college days and created a minimalistic web app to help make time for what's important
+- [Running Apache Kafka in KRaft mode](/blog/posts/running-apache-kafka-in-kraft-mode.html)
+  - Published: 2026-02-18
+  - Tags: Apache Kafka, KRaft, Distributed Systems
+  - Description: What I wish I had known when migrating Kafka clusters from ZooKeeper to KRaft mode. An introductory overview of KRaft architecture and what actually changes.
 
-3. [Navigating OpenAI's JSON-Structured Outputs: Limitations and Solutions](/blog/posts/navigating-openai-json-structured-outputs.html)
-   - Published: 2025-02-28
-   - Tags: OpenAI API, JSON Schema, Pydantic
-   - Description: A practical guide to working with OpenAI's JSON-structured outputs, including common limitations and solutions based on real-world experience
+- [Make time for what matters](/blog/posts/make-time-for-what-matters.html)
+  - Published: 2025-03-27
+  - Tags: Time Management, Productivity, Web App
+  - Description: How I discovered time blocking during my college days and created a minimalistic web app to help make time for what's important.
 
-4. [Website Revamp and AI Development Experience](/blog/posts/website-revamp-and-ai-development.html)
-   - Published: 2025-02-23
-   - Tags: website development, AI development, personal growth
-   - Description: Reflecting on my website revamp journey and experience with AI-assisted development using Cursor IDE
+- [Navigating OpenAI's JSON-Structured Outputs: Limitations and Solutions](/blog/posts/navigating-openai-json-structured-outputs.html)
+  - Published: 2025-02-28
+  - Tags: OpenAI API, JSON Schema, Pydantic
+  - Description: A practical guide to working with OpenAI's JSON-structured outputs, including common limitations and solutions based on real-world experience.
 
-5. [Building an AI-Powered Personal Finance App](/blog/posts/building-ai-powered-personal-finance-app.html)
-   - Published: 2025-02-23
-   - Tags: AI/ML, Personal Finance, Double-Entry Accounting
-   - Description: Development of a personal finance app combining double-entry accounting with AI-powered expense classification
+- [Website Revamp and AI Development Experience](/blog/posts/website-revamp-and-ai-development.html)
+  - Published: 2025-02-23
+  - Tags: website development, AI development, personal growth
+  - Description: Reflecting on my website revamp journey and experience with AI-assisted development using Cursor IDE.
+
+- [Building an AI-Powered Personal Finance App](/blog/posts/building-ai-powered-personal-finance-app.html)
+  - Published: 2025-02-23
+  - Tags: AI/ML, Personal Finance, Double-Entry Accounting
+  - Description: Development of a personal finance app combining double-entry accounting with AI-powered expense classification.
 
 ### Projects
-1. [ByWeeks](https://byweeks.com)
-   - Date: 2025-03-27
-   - Tags: Web App, Time Management, Productivity, PWA
-   - Description: A minimalistic time blocking web app that helps you make time for what's important
+- [dev](/dev/)
+  - Date: 2026-02-18
+  - Tags: CLI, Go, Developer Tools, Open Source
+  - Description: A CLI tool that reduces cognitive load when navigating between development projects. Enforces an opinionated directory structure and provides fast fuzzy navigation.
 
-2. [UC3M Alumni Database Analysis](/AlumniUC3M/)
-   - Date: 2016-05-15
-   - Tags: Python, BeautifulSoup, Data Analysis
-   - Description: Using BeautifulSoup to scrape Alumni data and analyze graduation timelines at Universidad Carlos III de Madrid
+- [ByWeeks](https://byweeks.com)
+  - Date: 2025-03-27
+  - Tags: Web App, Time Management, Productivity, PWA
+  - Description: A minimalistic time blocking web app that helps you make time for what's important.
 
-3. [OpenStreetMap Data Wrangling](/OSMDataWrangling/)
-   - Date: 2016-04-20
-   - Tags: Python, MongoDB, Data Analysis
-   - Description: Data munging techniques to clean OpenStreetMap data, converting from XML to JSON format and importing into MongoDB
+- [UC3M Alumni Database Analysis](/AlumniUC3M/)
+  - Date: 2016-05-15
+  - Tags: Python, BeautifulSoup, Data Analysis
+  - Description: Using BeautifulSoup to scrape Alumni data and analyze graduation timelines at Universidad Carlos III de Madrid.
 
-4. [NYC Subway Dataset Analysis](/NYCSubwayAnalysis/)
-   - Date: 2016-03-10
-   - Tags: Python, pandas, Data Visualization
-   - Description: Statistical analysis to determine if weather affects NYC subway ridership
+- [OpenStreetMap Data Wrangling](/OSMDataWrangling/)
+  - Date: 2016-04-20
+  - Tags: Python, MongoDB, Data Analysis
+  - Description: Data munging techniques to clean OpenStreetMap data, converting from XML to JSON format and importing into MongoDB.
 
-5. [Biker Assistant](/PFC.pdf)
-   - Date: 2015-09-01
-   - Tags: Android, Java, Neural Networks
-   - Description: Android application for Bultaco Motors providing telemetry display, navigation, and intelligent range estimation
+- [NYC Subway Dataset Analysis](/NYCSubwayAnalysis/)
+  - Date: 2016-03-10
+  - Tags: Python, pandas, Data Visualization
+  - Description: Statistical analysis to determine if weather affects NYC subway ridership.
 
-6. [Secret Santa App](/secretsanta/)
-   - Date: 2015-12-15
-   - Tags: Android, Java
-   - Description: Android app for organizing Secret Santa events with automatic email notifications
+- [Biker Assistant](/PFC.pdf)
+  - Date: 2015-09-01
+  - Tags: Android, Java, Neural Networks
+  - Description: Android application for Bultaco Motors providing telemetry display, navigation, and intelligent range estimation.
 
-7. [MLP Java](https://github.com/dsaiztc/MultilayerPerceptron)
-   - Date: 2015-11-01
-   - Tags: Java, Machine Learning, Open Source
-   - Description: Java implementation of an Artificial Neural Network using EJML library
+- [Secret Santa App](/secretsanta/)
+  - Date: 2015-12-15
+  - Tags: Android, Java
+  - Description: Android app for organizing Secret Santa events with automatic email notifications.
+
+- [MLP Java](https://github.com/dsaiztc/MultilayerPerceptron)
+  - Date: 2015-11-01
+  - Tags: Java, Machine Learning, Open Source
+  - Description: Java implementation of an Artificial Neural Network using EJML library.
 
 ## Professional Experience
 - Senior Software Engineer, Data Streaming Infrastructure at Shopify (2021-2024)
@@ -99,4 +109,4 @@ Description: Personal website featuring blog posts about software engineering, p
 ## Contact Information
 - [GitHub](https://github.com/dsaiztc)
 - [LinkedIn](https://linkedin.com/in/dsaiztc)
-- [Twitter/X](https://x.com/dsaiztc) 
+- [Twitter/X](https://x.com/dsaiztc)

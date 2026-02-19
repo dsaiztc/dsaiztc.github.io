@@ -37,10 +37,7 @@ Static HTML site with no framework, no build pipeline, and no JavaScript framewo
 - **Layout**: `max-w-3xl mx-auto` content width
 - **Dates**: ISO format (`YYYY-MM-DD`) in `datetime` attributes; `js/dates.js` renders them as relative strings at runtime
 - **Navigation**: Consistent across all pages — Home, Blog, Projects, About
-- **Analytics**: Beam Analytics script must be included in `<head>` of every new page:
-  ```html
-  <script src="https://beamanalytics.b-cdn.net/beam.min.js" data-token="d62099d2-5537-46f3-836a-033a81ac69a6" async></script>
-  ```
+- **Analytics**: Both Beam and PostHog scripts must be included in `<head>` of every new page. Copy the `<!-- Beam Analytics -->` and `<!-- PostHog Analytics -->` blocks from any existing page (e.g. `about/index.html`).
 
 ## JavaScript Utilities (`js/dates.js`)
 

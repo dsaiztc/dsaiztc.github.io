@@ -118,6 +118,12 @@
                                 Prints the shell integration snippet. Add <code class="bg-gray-100 px-1 py-0.5">eval "$(dev init)"</code> to your <code class="bg-gray-100 px-1 py-0.5">.zshrc</code> or <code class="bg-gray-100 px-1 py-0.5">.bashrc</code> to enable <code class="bg-gray-100 px-1 py-0.5">dev cd</code>.
                             </p>
                         </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev new &lt;name&gt;</pre>
+                            <p class="mt-2">
+                                <span class="text-violet-600 font-semibold">New in v0.3.0.</span> Creates a new project directory under <code class="bg-gray-100 px-1 py-0.5">~/src/&lt;source&gt;/&lt;org&gt;/&lt;name&gt;</code>, initializes a git repo, and cd's into it. On first use, prompts for your default source and org. Override per-invocation with <code class="bg-gray-100 px-1 py-0.5">--source</code> and <code class="bg-gray-100 px-1 py-0.5">--org</code>.
+                            </p>
+                        </div>
                     </div>
                 </section>
 

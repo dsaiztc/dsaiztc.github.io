@@ -14,7 +14,7 @@ Description: Personal website featuring blog posts about software engineering, p
 ### Blog Posts
 - [Introducing dev: a CLI for navigating your projects](/blog/posts/introducing-dev.html)
   - Published: 2026-02-18
-  - Tags: CLI, Go, Developer Tools
+  - Tags: CLI, Go, Developer Tools, Claude Code
   - Description: How I built dev, a small CLI tool that enforces an opinionated directory structure for all your repos and lets you fuzzy-navigate between them.
 
 - [Running Apache Kafka in KRaft mode](/blog/posts/running-apache-kafka-in-kraft-mode.html)

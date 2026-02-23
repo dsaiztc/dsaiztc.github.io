@@ -6,7 +6,7 @@
     <title>Introducing dev: a CLI for navigating your projects - Daniel Saiz</title>
     <meta name="description" content="How I built dev, a small CLI tool that enforces an opinionated directory structure for all your repos and lets you fuzzy-navigate between them.">
     <meta name="author" content="Daniel Saiz">
-    <meta name="keywords" content="CLI, Go, Developer Tools, Terminal, Project Navigation, Homebrew">
+    <meta name="keywords" content="CLI, Go, Developer Tools, Terminal, Project Navigation, Homebrew, Claude Code">
 
     <!-- Open Graph Tags -->
     <meta property="og:type" content="article">
@@ -16,6 +16,7 @@
     <meta property="article:tag" content="CLI">
     <meta property="article:tag" content="Go">
     <meta property="article:tag" content="Developer Tools">
+    <meta property="article:tag" content="Claude Code">
 
     <!-- Schema.org Markup -->
     <script type="application/ld+json">
@@ -28,7 +29,7 @@
             "@type": "Person",
             "name": "Daniel Saiz"
         },
-        "keywords": ["CLI", "Go", "Developer Tools", "Terminal", "Project Navigation"],
+        "keywords": ["CLI", "Go", "Developer Tools", "Terminal", "Project Navigation", "Claude Code"],
         "articleBody": "How I built dev, a small CLI tool that enforces an opinionated directory structure for all your repos and lets you fuzzy-navigate between them."
     }
     </script>
@@ -172,6 +173,48 @@
                     It's so simple, I know. Still, it's the command I use most throughout my day. And it's all just based on following the same convention on how to organize the repos in your filesystem.
                 </p>
 
+                <h2 class="text-xl md:text-2xl font-semibold">How do I use this</h2>
+
+                <p>
+                    The most obvious use case is when cloning a new repo. Just copy the <code class="bg-gray-100 px-1 py-0.5">*.git</code> URL and run <code class="bg-gray-100 px-1 py-0.5">dev clone</code>. That's it, I now directly open my editor (e.g. <code class="bg-gray-100 px-1 py-0.5">code .</code> for <em>VS Code</em>).
+                </p>
+
+                <p>
+                    The second use case is, well, navigating to a directory. I don't always remember the exact name of a repo. Or even if I did, I don't want to type the whole path. So I just hit <code class="bg-gray-100 px-1 py-0.5">dev cd</code> and search for it. Voilà! I'm in the repo folder.
+                </p>
+
+                <p>
+                    The third, most recent, and the one that feels more powerful, is leveraging this convention when working with an AI-assisted environment (say <em>Claude Code</em>, <em>Codex</em>, <em>Cursor</em> and the like).
+                </p>
+
+                <p>
+                    Imagine you're working on a repo, you spin up a new <em>Claude Code</em> session and start planning for a new feature. But there is some missing context. This repo isn't the whole picture. The <em>Docker</em> image is defined elsewhere. Also it's using an open source <em>Kubernetes Helm chart</em> defined elsewhere. All these pieces are, most likely, important context to pass to your LLM friend.
+                </p>
+
+                <p>Let's say I have this folder structure:</p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">~/src/
+  github.com/
+    dsaiztc/
+      my-service/
+      my-service-image/
+    apache/
+      helm-chart-my-service-uses/</pre>
+
+                <p>I start a new <em>Claude Code</em> session on <code class="bg-gray-100 px-1 py-0.5">~/src/github.com/dsaiztc/my-service</code> and now reference the other two repositories writing something like:</p>
+
+                <blockquote class="border-l-2 border-black pl-4 italic">
+                    This service's image is defined on ~/src/github.com/dsaiztc/my-service-image, and the chart it's using is defined on ~/src/github.com/apache/helm-chart-my-service-uses
+                </blockquote>
+
+                <p>
+                    (If you keep adding the above to every session, then it might make sense to add it to your <code class="bg-gray-100 px-1 py-0.5">CLAUDE.md</code> or <code class="bg-gray-100 px-1 py-0.5">AGENTS.md</code> file)
+                </p>
+
+                <p>
+                    This way it's straightforward for any LLM to extract the necessary context. If you're lucky that your documentation also lives on Markdown files in a repository, you can also <code class="bg-gray-100 px-1 py-0.5">dev clone</code> that and have that path handy for your LLM to read.
+                </p>
+
                 <p>
                     You can go to <a href="/dev" class="text-violet-600 hover:text-violet-800 hover:underline">dsaiztc.com/dev</a> and learn more about it, including how to install it.
                 </p>
@@ -184,6 +227,7 @@
                         <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">CLI</span>
                         <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Go</span>
                         <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Developer Tools</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Claude Code</span>
                     </div>
                 </div>
             </div>

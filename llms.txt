@@ -12,6 +12,11 @@ Description: Personal website featuring blog posts about software engineering, p
 - [Projects](/projects/) - Showcase of software development projects
 
 ### Blog Posts
+- [dev: Two Weeks of Rapid Evolution](/blog/posts/dev-evolution.html)
+  - Published: 2026-02-27
+  - Tags: CLI, Go, Developer Tools, Unix Philosophy, Claude Code
+  - Description: How dev evolved through four major releases in two weeks, adding project scaffolding, tree views, plugins, and composable path lookup.
+
 - [Introducing dev: a CLI for navigating your projects](/blog/posts/introducing-dev.html)
   - Published: 2026-02-18
   - Tags: CLI, Go, Developer Tools, Claude Code

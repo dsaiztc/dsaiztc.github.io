@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dev wkt: Git Worktrees for Parallel Development - Daniel Saiz</title>
+    <meta name="description" content="I've added opinionated support for git worktrees to dev via the dev wkt sub-command — create, navigate, and clean up worktrees for parallel development.">
+    <meta name="author" content="Daniel Saiz">
+    <meta name="keywords" content="CLI, Go, Developer Tools, Git Worktrees, Claude Code">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="dev wkt: Git Worktrees for Parallel Development">
+    <meta property="og:description" content="I've added opinionated support for git worktrees to dev via the dev wkt sub-command — create, navigate, and clean up worktrees for parallel development.">
+    <meta property="article:published_time" content="2026-03-03">
+    <meta property="article:tag" content="CLI">
+    <meta property="article:tag" content="Go">
+    <meta property="article:tag" content="Developer Tools">
+    <meta property="article:tag" content="Git Worktrees">
+    <meta property="article:tag" content="Claude Code">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "dev wkt: Git Worktrees for Parallel Development",
+        "datePublished": "2026-03-03",
+        "author": {
+            "@type": "Person",
+            "name": "Daniel Saiz"
+        },
+        "keywords": ["CLI", "Go", "Developer Tools", "Git Worktrees", "Claude Code"],
+        "articleBody": "I've added opinionated support for git worktrees to dev via the dev wkt sub-command — create, navigate, and clean up worktrees for parallel development."
+    }
+    </script>
+
+    <!-- Beam Analytics -->
+    <script
+      src="https://beamanalytics.b-cdn.net/beam.min.js"
+      data-token="d62099d2-5537-46f3-836a-033a81ac69a6"
+      async
+    ></script>
+
+    <!-- PostHog Analytics -->
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init ns hs wi ls ds rs os capture calculateEventProperties fs register register_once register_for_session unregister unregister_for_session bs getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty gs cs createPersonProfile setInternalOrTestUser ts ys opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing vs debug M ps getPageViewId captureTraceFeedback captureTraceMetric Xr".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('phc_qlOI7D1JSGrR6AfyU3S5nPZmQtXV1ZLtPr81UeQZbKY', {
+            api_host: 'https://eu.i.posthog.com',
+            defaults: '2026-01-30',
+            person_profiles: 'identified_only',
+        })
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black font-mono">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <article class="prose prose-lg space-y-4 md:space-y-8">
+            <header class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">dev wkt: Git Worktrees for Parallel Development</h1>
+                <time datetime="2026-03-03" class="text-xs md:text-sm text-violet-600"></time>
+            </header>
+
+            <div class="space-y-4 md:space-y-8 text-sm md:text-base leading-relaxed">
+                <p>
+                    In my <a href="/blog/posts/dev-evolution.html" class="text-violet-600 hover:text-violet-800 hover:underline">last post</a> I mentioned git worktrees as something I wanted to add to <code class="bg-gray-100 px-1 py-0.5">dev</code>. Well, here it is.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">TL;DR</h2>
+
+                <p>
+                    I've added (my opinionated) support for <em>git worktrees</em> to <code class="bg-gray-100 px-1 py-0.5">dev</code> via <strong><code class="bg-gray-100 px-1 py-0.5">dev wkt</code> sub-command</strong>.
+                </p>
+
+                <video src="/dev/dev_wkt_2x.mp4" autoplay loop muted playsinline class="w-full border border-black"></video>
+
+                <h2 class="text-xl md:text-2xl font-semibold">The Problem</h2>
+
+                <p>
+                    I've been using <em>Claude Code</em> a lot. And one thing I keep wanting to do is work on multiple things at the same time within the same repo.
+                </p>
+
+                <p>
+                    Say I'm on <code class="bg-gray-100 px-1 py-0.5">main</code>, working on feature A with Claude. But I also want to kick off feature B in a separate session. Or maybe I want to review a PR while Claude keeps working on something else.
+                </p>
+
+                <p>
+                    With a single checkout, you can't. You'd have to stash, switch branches, do your thing, switch back. Or clone the repo again somewhere else. Both options are annoying.
+                </p>
+
+                <p>
+                    Git worktrees solve this cleanly — they let you have multiple branches checked out simultaneously, each in its own directory. But managing them manually is tedious:
+                </p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">git worktree add ../my-repo-feature-b -b feature-b
+cd ../my-repo-feature-b
+# ... do work ...
+git worktree remove ../my-repo-feature-b
+git branch -D feature-b
+git push origin --delete feature-b</pre>
+
+                <p>
+                    Where do you put them? How do you name them? How do you navigate between them? How do you clean up after?
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">The Solution: <code class="bg-gray-100 px-1 py-0.5">dev wkt</code></h2>
+
+                <p>Three new subcommands: <code class="bg-gray-100 px-1 py-0.5">new</code>, <code class="bg-gray-100 px-1 py-0.5">cd</code>, and <code class="bg-gray-100 px-1 py-0.5">rm</code>.</p>
+
+                <h3 class="text-lg md:text-xl font-semibold">Creating a worktree</h3>
+
+                <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wkt new feature-login
+# → creates ~/src__worktrees/github.com/dsaiztc/my-service__feature-login
+# → cd's into it</pre>
+
+                <p>
+                    That's it. New branch, new directory, you're in it.
+                </p>
+
+                <p>
+                    The worktree lives under <code class="bg-gray-100 px-1 py-0.5">~/src__worktrees/</code> instead of <code class="bg-gray-100 px-1 py-0.5">~/src/</code>. This is intentional — <code class="bg-gray-100 px-1 py-0.5">dev cd</code> only looks at <code class="bg-gray-100 px-1 py-0.5">~/src/</code>, so worktrees don't pollute your main repo list. They're temporary workspaces, not permanent clones.
+                </p>
+
+                <h3 class="text-lg md:text-xl font-semibold">Navigating between worktrees</h3>
+
+                <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wkt cd
+# → fuzzy finder showing all worktrees for the current repo
+# → main is annotated with (main)</pre>
+
+                <p>
+                    Same fuzzy finder you're used to from <code class="bg-gray-100 px-1 py-0.5">dev cd</code>, but scoped to the current repo's worktrees.
+                </p>
+
+                <h3 class="text-lg md:text-xl font-semibold">Cleaning up</h3>
+
+                <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm"># From a linked worktree — just run rm, it knows what to remove
+dev wkt rm
+# → confirms, removes worktree, deletes local + remote branch, cd's to main
+
+# From main — specify or pick from fuzzy finder
+dev wkt rm feature-login</pre>
+
+                <p>
+                    This is the most opinionated part. <code class="bg-gray-100 px-1 py-0.5">dev wkt rm</code> doesn't just remove the worktree — it also deletes the local branch and the remote branch. My reasoning: if the worktree is gone, the branch is done. If it was merged, the remote branch should go. If it wasn't, I probably abandoned it. Either way, clean up.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Design Decisions</h2>
+
+                <h3 class="text-lg md:text-xl font-semibold">Why <code class="bg-gray-100 px-1 py-0.5">~/src__worktrees/</code>?</h3>
+
+                <p>
+                    I considered putting worktrees next to the main repo (e.g. <code class="bg-gray-100 px-1 py-0.5">~/src/github.com/dsaiztc/my-service__feature-b</code>). But that would mean <code class="bg-gray-100 px-1 py-0.5">dev cd</code> and <code class="bg-gray-100 px-1 py-0.5">dev tree</code> would show them. Worktrees are ephemeral — they come and go with branches. I don't want them mixed in with my actual repos.
+                </p>
+
+                <p>
+                    A separate root keeps the mental model clean: <code class="bg-gray-100 px-1 py-0.5">~/src/</code> is your repos, <code class="bg-gray-100 px-1 py-0.5">~/src__worktrees/</code> is your temporary parallel checkouts.
+                </p>
+
+                <p>The worktree root is configurable via <code class="bg-gray-100 px-1 py-0.5">~/.config/dev/config.json</code>:</p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">{
+  "worktree_root": "~/my_worktrees"
+}</pre>
+
+                <h3 class="text-lg md:text-xl font-semibold">Naming: <code class="bg-gray-100 px-1 py-0.5">repo__branch</code></h3>
+
+                <p>
+                    Worktree directories are named <code class="bg-gray-100 px-1 py-0.5">&lt;repo&gt;__&lt;branch&gt;</code>. The double underscore is a clear separator that doesn't conflict with repo or branch names.
+                </p>
+
+                <p>
+                    Branch names with slashes (like <code class="bg-gray-100 px-1 py-0.5">fix/bug-123</code>) get the <code class="bg-gray-100 px-1 py-0.5">/</code> replaced with <code class="bg-gray-100 px-1 py-0.5">--</code>, so the path stays flat: <code class="bg-gray-100 px-1 py-0.5">my-service__fix--bug-123</code>.
+                </p>
+
+                <h3 class="text-lg md:text-xl font-semibold">The shell wrapper</h3>
+
+                <p>
+                    Like <code class="bg-gray-100 px-1 py-0.5">dev cd</code> and <code class="bg-gray-100 px-1 py-0.5">dev clone</code>, the <code class="bg-gray-100 px-1 py-0.5">wkt</code> subcommands need to change your shell's working directory. The shell wrapper (<code class="bg-gray-100 px-1 py-0.5">eval "$(dev init)"</code>) now also intercepts <code class="bg-gray-100 px-1 py-0.5">dev wkt cd</code>, <code class="bg-gray-100 px-1 py-0.5">dev wkt new</code>, and <code class="bg-gray-100 px-1 py-0.5">dev wkt rm</code>.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">How I Actually Use This</h2>
+
+                <p>My typical workflow now looks like:</p>
+
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>I'm on <code class="bg-gray-100 px-1 py-0.5">main</code> in a repo, working on something with <em>Claude Code</em></li>
+                    <li>I want to start a second task in parallel: <code class="bg-gray-100 px-1 py-0.5">dev wkt new feature-x</code></li>
+                    <li>I'm now in a fresh checkout on a new branch — I open another <em>Claude Code</em> session here</li>
+                    <li>When I need to switch between them: <code class="bg-gray-100 px-1 py-0.5">dev wkt cd</code></li>
+                    <li>When a branch is merged: <code class="bg-gray-100 px-1 py-0.5">dev wkt rm</code> cleans everything up</li>
+                </ol>
+
+                <p>
+                    The key insight is that worktrees + AI coding agents = true parallelism. You're not context-switching between branches anymore. Each branch has its own directory, its own editor window, its own Claude session. They don't interfere with each other.
+                </p>
+
+                <hr class="border-t border-black my-8">
+
+                <p>
+                    Check out <a href="/dev" class="text-violet-600 hover:text-violet-800 hover:underline">dev at dsaiztc.com/dev</a> for installation and full docs. <code class="bg-gray-100 px-1 py-0.5">brew upgrade dev</code> to get the latest.
+                </p>
+
+                <div class="mt-8 space-y-2">
+                    <h2 class="text-xl md:text-2xl font-semibold">Tags</h2>
+                    <div class="flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">CLI</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Go</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Developer Tools</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Git Worktrees</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Claude Code</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2024</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

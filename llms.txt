@@ -12,6 +12,11 @@ Description: Personal website featuring blog posts about software engineering, p
 - [Projects](/projects/) - Showcase of software development projects
 
 ### Blog Posts
+- [dev wkt: Git Worktrees for Parallel Development](/blog/posts/dev-worktrees.html)
+  - Published: 2026-03-03
+  - Tags: CLI, Go, Developer Tools, Git Worktrees, Claude Code
+  - Description: I've added opinionated support for git worktrees to dev via the dev wkt sub-command — create, navigate, and clean up worktrees for parallel development.
+
 - [dev: Two Weeks of Rapid Evolution](/blog/posts/dev-evolution.html)
   - Published: 2026-02-27
   - Tags: CLI, Go, Developer Tools, Unix Philosophy, Claude Code

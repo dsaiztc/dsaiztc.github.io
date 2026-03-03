@@ -140,6 +140,37 @@
                 </section>
 
                 <section class="space-y-3 md:space-y-4">
+                    <h2 class="text-xl md:text-2xl font-semibold">Worktrees</h2>
+                    <video src="/dev/dev_wkt_2x.mp4" autoplay loop muted playsinline class="w-full border border-black"></video>
+                    <p>
+                        <span class="text-violet-600 font-semibold">New in v0.7.0.</span> Work on multiple branches simultaneously using git worktrees. Worktrees live under <code class="bg-gray-100 px-1 py-0.5">~/src__worktrees/</code>, separate from <code class="bg-gray-100 px-1 py-0.5">~/src/</code>, so they don't show up in <code class="bg-gray-100 px-1 py-0.5">dev cd</code> or <code class="bg-gray-100 px-1 py-0.5">dev tree</code>.
+                    </p>
+                    <div class="space-y-5 md:space-y-6">
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wkt new &lt;branch&gt;</pre>
+                            <p class="mt-2">
+                                Creates a new worktree with a new branch and cd's into it. The directory is named <code class="bg-gray-100 px-1 py-0.5">&lt;repo&gt;__&lt;branch&gt;</code> — slashes in branch names are replaced with <code class="bg-gray-100 px-1 py-0.5">--</code> to keep paths flat.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wkt cd</pre>
+                            <p class="mt-2">
+                                Opens a fuzzy finder to navigate between worktrees of the current repo. The main worktree is annotated with <code class="bg-gray-100 px-1 py-0.5">(main)</code>.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wkt rm [branch]</pre>
+                            <p class="mt-2">
+                                Removes a worktree, its local branch, and its remote branch. From a linked worktree, removes the current one and cd's to main. From main, specify a branch or pick one from the fuzzy finder. Always prompts for confirmation.
+                            </p>
+                        </div>
+                    </div>
+                    <p>
+                        The worktree root is configurable in <code class="bg-gray-100 px-1 py-0.5">~/.config/dev/config.json</code> via the <code class="bg-gray-100 px-1 py-0.5">worktree_root</code> key (supports <code class="bg-gray-100 px-1 py-0.5">~</code> expansion).
+                    </p>
+                </section>
+
+                <section class="space-y-3 md:space-y-4">
                     <h2 class="text-xl md:text-2xl font-semibold">Plugins</h2>
                     <p>
                         <span class="text-violet-600 font-semibold">New in v0.5.0.</span> You can extend <code class="bg-gray-100 px-1 py-0.5">dev</code> with your own subcommands — no need to modify the binary. Any executable on your <code class="bg-gray-100 px-1 py-0.5">PATH</code> named <code class="bg-gray-100 px-1 py-0.5">dev-&lt;name&gt;</code> becomes available as <code class="bg-gray-100 px-1 py-0.5">dev &lt;name&gt;</code>.

@@ -109,7 +109,7 @@
                         <div>
                             <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev cd [query]</pre>
                             <p class="mt-2">
-                                Fuzzy-find any project under <code class="bg-gray-100 px-1 py-0.5">~/src</code> and navigate to it. If no <code class="bg-gray-100 px-1 py-0.5">query</code> passed, opens up a fuzzy search, else picks the best match. Requires shell integration via <code class="bg-gray-100 px-1 py-0.5">dev init</code>.
+                                Fuzzy-find any project under <code class="bg-gray-100 px-1 py-0.5">~/src</code> and navigate to it. If no <code class="bg-gray-100 px-1 py-0.5">query</code> passed, opens up a fuzzy search, else picks the best match. Requires shell integration via <code class="bg-gray-100 px-1 py-0.5">dev init</code>. <span class="text-violet-600 font-semibold">New in v0.9.0:</span> <code class="bg-gray-100 px-1 py-0.5">dev cd -</code> jumps back to the previous directory, just like <code class="bg-gray-100 px-1 py-0.5">cd -</code>.
                             </p>
                         </div>
                         <div>
@@ -127,13 +127,13 @@
                         <div>
                             <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev tree</pre>
                             <p class="mt-2">
-                                <span class="text-violet-600 font-semibold">New in v0.4.0.</span> Displays an ASCII tree view of all repositories under <code class="bg-gray-100 px-1 py-0.5">~/src</code>, showing the source/org/project hierarchy. Useful for getting an overview of your repository organization at a glance.
+                                <span class="text-violet-600 font-semibold">New in v0.4.0.</span> Displays an ASCII tree view of all repositories under <code class="bg-gray-100 px-1 py-0.5">~/src</code>, showing the source/org/project hierarchy. Useful for getting an overview of your repository organization at a glance. Pass <code class="bg-gray-100 px-1 py-0.5">--json</code> <span class="text-violet-600 font-semibold">(v0.8.0)</span> for a machine-readable array of repo paths.
                             </p>
                         </div>
                         <div>
                             <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev loc [query]</pre>
                             <p class="mt-2">
-                                <span class="text-violet-600 font-semibold">New in v0.6.0.</span> Prints the full path to a repository to stdout. Perfect for composing with other commands like <code class="bg-gray-100 px-1 py-0.5">code $(dev loc project)</code> or <code class="bg-gray-100 px-1 py-0.5">ls $(dev loc repo)</code>.
+                                <span class="text-violet-600 font-semibold">New in v0.6.0.</span> Prints the full path to a repository to stdout. Perfect for composing with other commands like <code class="bg-gray-100 px-1 py-0.5">code $(dev loc project)</code> or <code class="bg-gray-100 px-1 py-0.5">ls $(dev loc repo)</code>. Pass <code class="bg-gray-100 px-1 py-0.5">--json</code> <span class="text-violet-600 font-semibold">(v0.8.0)</span> to get <code class="bg-gray-100 px-1 py-0.5">{"repo":…,"path":…}</code> instead.
                             </p>
                         </div>
                     </div>
@@ -145,23 +145,26 @@
                     <p>
                         <span class="text-violet-600 font-semibold">New in v0.7.0.</span> Work on multiple branches simultaneously using git worktrees. Worktrees live under <code class="bg-gray-100 px-1 py-0.5">~/src__worktrees/</code>, separate from <code class="bg-gray-100 px-1 py-0.5">~/src/</code>, so they don't show up in <code class="bg-gray-100 px-1 py-0.5">dev cd</code> or <code class="bg-gray-100 px-1 py-0.5">dev tree</code>.
                     </p>
+                    <p>
+                        <span class="text-violet-600 font-semibold">Renamed in v0.8.0:</span> the subcommand is now <code class="bg-gray-100 px-1 py-0.5">dev wt</code>. <code class="bg-gray-100 px-1 py-0.5">dev wkt</code> still works as a deprecated alias (it prints a warning and will be removed later). Running <code class="bg-gray-100 px-1 py-0.5">dev wt</code> with no subcommand defaults to <code class="bg-gray-100 px-1 py-0.5">dev wt cd</code>.
+                    </p>
                     <div class="space-y-5 md:space-y-6">
                         <div>
-                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wkt new &lt;branch&gt;</pre>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wt new &lt;branch&gt;</pre>
                             <p class="mt-2">
                                 Creates a new worktree with a new branch and cd's into it. The directory is named <code class="bg-gray-100 px-1 py-0.5">&lt;repo&gt;__&lt;branch&gt;</code> — slashes in branch names are replaced with <code class="bg-gray-100 px-1 py-0.5">--</code> to keep paths flat.
                             </p>
                         </div>
                         <div>
-                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wkt cd</pre>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wt cd</pre>
                             <p class="mt-2">
-                                Opens a fuzzy finder to navigate between worktrees of the current repo. The main worktree is annotated with <code class="bg-gray-100 px-1 py-0.5">(main)</code>.
+                                Opens a fuzzy finder to navigate between worktrees of the current repo. The main worktree is annotated with <code class="bg-gray-100 px-1 py-0.5">(main)</code>. <code class="bg-gray-100 px-1 py-0.5">dev wt cd -</code> <span class="text-violet-600 font-semibold">(v0.9.0)</span> jumps back to the previous directory.
                             </p>
                         </div>
                         <div>
-                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wkt rm [branch]</pre>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">dev wt rm [branch]</pre>
                             <p class="mt-2">
-                                Removes a worktree, its local branch, and its remote branch. From a linked worktree, removes the current one and cd's to main. From main, specify a branch or pick one from the fuzzy finder. Always prompts for confirmation.
+                                Removes a worktree, its local branch, and its remote branch. From a linked worktree, removes the current one and cd's to main. From main, specify a branch or pick one from the fuzzy finder. Prompts for confirmation unless <code class="bg-gray-100 px-1 py-0.5">--yes</code> <span class="text-violet-600 font-semibold">(v0.8.0)</span> is passed.
                             </p>
                         </div>
                     </div>
@@ -188,6 +191,39 @@ mv dev-ll ~/.local/bin/</pre>
                     <p>
                         Now <code class="bg-gray-100 px-1 py-0.5">dev ll</code> just works. Plugins show up under their own section in <code class="bg-gray-100 px-1 py-0.5">dev help</code>, receive all arguments verbatim, and get two environment variables: <code class="bg-gray-100 px-1 py-0.5">DEV_ROOT</code> (the <code class="bg-gray-100 px-1 py-0.5">~/src</code> base path) and <code class="bg-gray-100 px-1 py-0.5">DEV_CWD</code> (the current working directory). Plugins can be written in any language. Built-in commands always take precedence.
                     </p>
+                </section>
+
+                <section class="space-y-3 md:space-y-4">
+                    <h2 class="text-xl md:text-2xl font-semibold">Scripting &amp; AI agents</h2>
+                    <p>
+                        <span class="text-violet-600 font-semibold">New in v0.8.0.</span> <code class="bg-gray-100 px-1 py-0.5">dev</code> follows agent-friendly CLI conventions so it works cleanly in scripts, CI, and with AI coding agents — never blocking on a prompt and offering machine-readable output.
+                    </p>
+                    <div class="space-y-5 md:space-y-6">
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">--no-input</pre>
+                            <p class="mt-2">
+                                Disables every interactive prompt. Commands fall back to sensible defaults or fail fast with a clear error instead of waiting on a terminal that isn't there.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">--json</pre>
+                            <p class="mt-2">
+                                Available on <code class="bg-gray-100 px-1 py-0.5">dev tree</code> and <code class="bg-gray-100 px-1 py-0.5">dev loc</code> — emit structured output you can pipe into <code class="bg-gray-100 px-1 py-0.5">jq</code> instead of scraping text.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">--no-color &nbsp;·&nbsp; NO_COLOR</pre>
+                            <p class="mt-2">
+                                Strips ANSI color from output. Also honored via the <code class="bg-gray-100 px-1 py-0.5">NO_COLOR</code> environment variable.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">--version</pre>
+                            <p class="mt-2">
+                                Prints the installed version and exits.
+                            </p>
+                        </div>
+                    </div>
                 </section>
 
                 <section class="space-y-3 md:space-y-4">

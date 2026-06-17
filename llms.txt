@@ -54,9 +54,9 @@ Description: Personal website featuring blog posts about software engineering, p
 
 ### Projects
 - [dev](/dev/)
-  - Date: 2026-03-03
+  - Date: 2026-06-17
   - Tags: CLI, Go, Developer Tools, Open Source
-  - Description: A CLI tool that reduces cognitive load when navigating between development projects. Enforces an opinionated directory structure and provides fast fuzzy navigation. Supports git worktrees via dev wkt for parallel development.
+  - Description: A CLI tool that reduces cognitive load when navigating between development projects. Enforces an opinionated directory structure and provides fast fuzzy navigation. Supports git worktrees via dev wt (formerly dev wkt) for parallel development, plus agent-friendly flags (--json, --no-input, --no-color) for scripting and AI agents.
 
 - [ByWeeks](https://byweeks.com)
   - Date: 2025-03-27

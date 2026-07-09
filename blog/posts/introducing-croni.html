@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducing croni: cron-like scheduling for macOS - Daniel Saiz</title>
+    <meta name="description" content="I built croni, a friendly CLI that wraps macOS launchd behind a cron-like interface — schedule recurring commands, especially claude -p prompts, without ever touching plist XML or launchctl.">
+    <meta name="author" content="Daniel Saiz">
+    <meta name="keywords" content="CLI, Go, macOS, launchd, cron, Scheduling, Claude Code">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Introducing croni: cron-like scheduling for macOS">
+    <meta property="og:description" content="I built croni, a friendly CLI that wraps macOS launchd behind a cron-like interface — schedule recurring commands, especially claude -p prompts, without touching plist XML.">
+    <meta property="article:published_time" content="2026-07-08">
+    <meta property="article:tag" content="CLI">
+    <meta property="article:tag" content="Go">
+    <meta property="article:tag" content="macOS">
+    <meta property="article:tag" content="Claude Code">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Introducing croni: cron-like scheduling for macOS",
+        "datePublished": "2026-07-08",
+        "author": {
+            "@type": "Person",
+            "name": "Daniel Saiz"
+        },
+        "keywords": ["CLI", "Go", "macOS", "launchd", "cron", "Scheduling", "Claude Code"],
+        "articleBody": "I built croni, a friendly CLI that wraps macOS launchd behind a cron-like interface — schedule recurring commands, especially claude -p prompts, without ever touching plist XML or launchctl."
+    }
+    </script>
+
+    <!-- Beam Analytics -->
+    <script
+      src="https://beamanalytics.b-cdn.net/beam.min.js"
+      data-token="d62099d2-5537-46f3-836a-033a81ac69a6"
+      async
+    ></script>
+
+    <!-- PostHog Analytics -->
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init ns hs wi ls ds rs os capture calculateEventProperties fs register register_once register_for_session unregister unregister_for_session bs getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty gs cs createPersonProfile setInternalOrTestUser ts ys opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing vs debug M ps getPageViewId captureTraceFeedback captureTraceMetric Xr".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('phc_qlOI7D1JSGrR6AfyU3S5nPZmQtXV1ZLtPr81UeQZbKY', {
+            api_host: 'https://eu.i.posthog.com',
+            defaults: '2026-01-30',
+            person_profiles: 'identified_only',
+        })
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black font-mono">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <article class="prose prose-lg space-y-4 md:space-y-8">
+            <header class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">Introducing croni: cron-like scheduling for macOS</h1>
+                <time datetime="2026-07-08" class="text-xs md:text-sm text-violet-600"></time>
+            </header>
+
+            <div class="space-y-4 md:space-y-8 text-sm md:text-base leading-relaxed">
+                <div class="border-l-2 border-black pl-4 space-y-2">
+                    <p class="font-semibold">TL;DR</p>
+                    <p>I built <code class="bg-gray-100 px-1 py-0.5">croni</code>, a small CLI that schedules recurring commands on macOS — <code class="bg-gray-100 px-1 py-0.5">launchd</code> under the hood, cron on the surface. It's especially handy for scheduling <code class="bg-gray-100 px-1 py-0.5">claude -p</code> prompts. Check it out at <a href="/croni" class="text-violet-600 hover:text-violet-800 hover:underline">dsaiztc.com/croni</a>.</p>
+                </div>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Context</h2>
+
+                <p>
+                    I wanted to run a command on a schedule. On my Mac. That's it. That was the whole ask.
+                </p>
+
+                <p>
+                    On Linux I'd reach for <code class="bg-gray-100 px-1 py-0.5">cron</code> without a second thought — one line in a <code class="bg-gray-100 px-1 py-0.5">crontab</code> and I'd move on with my life. But on macOS the <em>blessed</em> path is <code class="bg-gray-100 px-1 py-0.5">launchd</code>. And <code class="bg-gray-100 px-1 py-0.5">launchd</code> wants a <em>plist</em>. In XML.
+                </p>
+
+                <p>
+                    So to run one command every six hours I'm supposed to hand-write something like this:
+                </p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;com.me.backup&lt;/string&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/bin/sh&lt;/string&gt;
+        &lt;string&gt;-c&lt;/string&gt;
+        &lt;string&gt;rsync -a ~/docs /backup/&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;StartInterval&lt;/key&gt;
+    &lt;integer&gt;21600&lt;/integer&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</pre>
+
+                <p>
+                    …drop it in <code class="bg-gray-100 px-1 py-0.5">~/Library/LaunchAgents/</code> with exactly the right filename, then <code class="bg-gray-100 px-1 py-0.5">launchctl bootstrap gui/$(id -u) ...</code> it (and remember the incantation to reload it after every edit). I always have to look it all up. Every single time.
+                </p>
+
+                <p>
+                    <strong>Wouldn't it be nice if I could just say "run this, every six hours" and be done?</strong>
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">What if it just looked like cron</h2>
+
+                <p>
+                    That's the whole idea behind <code class="bg-gray-100 px-1 py-0.5">croni</code>. I know cron. You know cron. So let's keep that on the surface and generate the plist underneath.
+                </p>
+
+                <p>
+                    The plist above becomes:
+                </p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add backup --every 6h --command "rsync -a ~/docs /backup/"</pre>
+
+                <p>
+                    That's it. <code class="bg-gray-100 px-1 py-0.5">croni</code> writes the plist, loads it into <code class="bg-gray-100 px-1 py-0.5">launchd</code>, and the job now survives reboots. Prefer real cron syntax? Use <code class="bg-gray-100 px-1 py-0.5">--cron "0 9 * * MON-FRI"</code>. Just want it to fire once and clean itself up? <code class="bg-gray-100 px-1 py-0.5">--at 20m</code>.
+                </p>
+
+                <p>
+                    And because the job's metadata lives in plain JSON at <code class="bg-gray-100 px-1 py-0.5">~/.croni/jobs.json</code>, the rest of the commands you'd expect just fall out of it: <code class="bg-gray-100 px-1 py-0.5">croni list</code>, <code class="bg-gray-100 px-1 py-0.5">croni logs backup</code>, <code class="bg-gray-100 px-1 py-0.5">croni disable backup</code>, <code class="bg-gray-100 px-1 py-0.5">croni remove backup</code>. No more wondering whether a job is actually loaded, or hunting for where its output went.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">The part I actually wanted it for</h2>
+
+                <p>
+                    The honest reason I finally built this: I wanted to schedule <em>Claude</em>.
+                </p>
+
+                <p>
+                    <code class="bg-gray-100 px-1 py-0.5">claude -p "..."</code> runs a prompt headlessly and prints the result — no interactive session. Which means a prompt is just… a command. And a command on a schedule is exactly what <code class="bg-gray-100 px-1 py-0.5">croni</code> does.
+                </p>
+
+                <p>
+                    So now, every weekday morning before I sit down, a job runs inside my main work repo and drafts my standup:
+                </p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add standup --cron "0 8 * * MON-FRI" \
+  --workdir ~/src/work/api \
+  --command "claude -p 'Summarize my git commits and open PRs from yesterday'"</pre>
+
+                <p>
+                    The <code class="bg-gray-100 px-1 py-0.5">--workdir</code> flag matters here: it runs the prompt inside the right repo, so Claude has the context it needs. From there it's a short hop to a triage digest every couple of hours, a nightly pass over a project for stale TODOs, or a weekly changelog draft. Anything you'd type as a prompt, you can now put on a timer.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Made for scripts and agents too</h2>
+
+                <p>
+                    I designed <code class="bg-gray-100 px-1 py-0.5">croni</code> to be driven by an agent from the start, following the kind of agent-friendly CLI conventions <a href="https://steipete.me/posts/2025/peekaboo-2-freeing-the-cli-from-its-mcp-shackles" class="text-violet-600 hover:text-violet-800 hover:underline" target="_blank" rel="noopener noreferrer">Peter Steinberger has written about</a>. Every command takes a <code class="bg-gray-100 px-1 py-0.5">--json</code> flag, so the output is machine-readable rather than something you have to scrape:
+                </p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add my-job --every 1h --command "echo hi" --json
+# {"status":"ok","job":{...}}</pre>
+
+                <p>
+                    Failures come back as a <code class="bg-gray-100 px-1 py-0.5">{"status":"error","error":"..."}</code> object too, and <code class="bg-gray-100 px-1 py-0.5">croni</code> exits non-zero when something goes wrong — so an agent can branch on the result instead of guessing. Nothing ever blocks on a prompt either: the single confirmation, on <code class="bg-gray-100 px-1 py-0.5">croni remove</code>, notices when there's no terminal and fails fast rather than hanging (or you pass <code class="bg-gray-100 px-1 py-0.5">--force</code>).
+                </p>
+
+                <p>
+                    Which closes a fun little loop: an AI agent can schedule — and inspect, and tear down — its own recurring work.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Try it</h2>
+
+                <p>
+                    It's a single Go binary, installable via Homebrew:
+                </p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">brew tap dsaiztc/tap
+brew install croni</pre>
+
+                <p>
+                    Head to <a href="/croni" class="text-violet-600 hover:text-violet-800 hover:underline">dsaiztc.com/croni</a> for the full command reference and a handful of recipes to copy-paste.
+                </p>
+
+                <p>Let me know if you find it useful!</p>
+
+                <div class="mt-8 space-y-2">
+                    <h2 class="text-xl md:text-2xl font-semibold">Tags</h2>
+                    <div class="flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">CLI</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Go</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">macOS</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Claude Code</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2024</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

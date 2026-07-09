@@ -12,6 +12,11 @@ Description: Personal website featuring blog posts about software engineering, p
 - [Projects](/projects/) - Showcase of software development projects
 
 ### Blog Posts
+- [Introducing croni: cron-like scheduling for macOS](/blog/posts/introducing-croni.html)
+  - Published: 2026-07-08
+  - Tags: CLI, Go, macOS, launchd, cron, Scheduling, Claude Code
+  - Description: I built croni, a friendly CLI that wraps macOS launchd behind a cron-like interface — schedule recurring commands, especially claude -p prompts, without ever touching plist XML or launchctl.
+
 - [dev wkt: Git Worktrees for Parallel Development](/blog/posts/dev-worktrees.html)
   - Published: 2026-03-03
   - Tags: CLI, Go, Developer Tools, Git Worktrees, Claude Code
@@ -53,6 +58,11 @@ Description: Personal website featuring blog posts about software engineering, p
   - Description: Development of a personal finance app combining double-entry accounting with AI-powered expense classification.
 
 ### Projects
+- [croni](/croni/)
+  - Date: 2026-06-17
+  - Tags: CLI, Go, macOS, Agent-ready, Developer Tools, Open Source
+  - Description: A friendly CLI for scheduling recurring commands on macOS. Wraps launchd behind a cron-like interface — schedule cron, interval (--every), or one-shot (--at) jobs that survive reboots without touching plist XML or launchctl. Especially handy for scheduling claude -p prompts. Agent-ready by design: machine-readable JSON output (--json) on every command including errors, non-zero exit codes on failure, and never blocks on a prompt (non-TTY stdin fails fast instead of hanging).
+
 - [dev](/dev/)
   - Date: 2026-06-17
   - Tags: CLI, Go, Developer Tools, Open Source

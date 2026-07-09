@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>croni - Daniel Saiz</title>
+    <meta name="description" content="A friendly CLI for scheduling recurring commands on macOS. Wraps launchd behind a cron-like interface — schedule jobs that survive reboots without touching plist XML or launchctl.">
+    <meta name="author" content="Daniel Saiz">
+    <meta name="keywords" content="CLI, Go, Developer Tools, Terminal, macOS, launchd, cron, Scheduling">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="croni - cron-like scheduling for macOS">
+    <meta property="og:description" content="A friendly CLI that wraps macOS launchd behind a cron-like interface.">
+
+    <!-- Beam Analytics -->
+    <script
+      src="https://beamanalytics.b-cdn.net/beam.min.js"
+      data-token="d62099d2-5537-46f3-836a-033a81ac69a6"
+      async
+    ></script>
+
+    <!-- PostHog Analytics -->
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init ns hs wi ls ds rs os capture calculateEventProperties fs register register_once register_for_session unregister unregister_for_session bs getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty gs cs createPersonProfile setInternalOrTestUser ts ys opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing vs debug M ps getPageViewId captureTraceFeedback captureTraceMetric Xr".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('phc_qlOI7D1JSGrR6AfyU3S5nPZmQtXV1ZLtPr81UeQZbKY', {
+            api_host: 'https://eu.i.posthog.com',
+            defaults: '2026-01-30',
+            person_profiles: 'identified_only',
+        })
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black font-mono">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <article class="space-y-6 md:space-y-10">
+            <header class="space-y-3 md:space-y-6">
+                <h1 class="text-2xl md:text-4xl font-semibold">croni</h1>
+                <p class="text-base md:text-lg leading-relaxed">
+                    A friendly CLI for scheduling recurring commands on macOS — without ever touching plist XML or <code class="bg-gray-100 px-1 py-0.5">launchctl</code>.
+                </p>
+                <div class="flex space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc/croni" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                        GitHub
+                    </a>
+                    <a href="/blog/posts/introducing-croni.html" class="text-xs md:text-base px-2 md:px-4 py-1 md:py-2 border border-black hover:bg-violet-500 hover:border-violet-500 hover:text-white transition-colors">
+                        Read the post
+                    </a>
+                </div>
+            </header>
+
+            <div class="space-y-6 md:space-y-10 text-sm md:text-base leading-relaxed">
+                <section class="space-y-3 md:space-y-4">
+                    <h2 class="text-xl md:text-2xl font-semibold">What it does</h2>
+                    <p>
+                        <code class="bg-gray-100 px-1 py-0.5">croni</code> wraps macOS <code class="bg-gray-100 px-1 py-0.5">launchd</code> behind a cron-like interface. Schedule recurring commands — especially <code class="bg-gray-100 px-1 py-0.5">claude -p "..."</code> prompts — that survive reboots, without writing a single line of plist XML.
+                    </p>
+                    <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add backup --every 6h --command "rsync -a ~/docs /backup/"</pre>
+                    <p>
+                        Each job is stored as plain metadata in <code class="bg-gray-100 px-1 py-0.5">~/.croni/jobs.json</code> and compiled into a launchd agent under <code class="bg-gray-100 px-1 py-0.5">~/Library/LaunchAgents/</code>. Jobs run via <code class="bg-gray-100 px-1 py-0.5">croni _exec</code>, which captures stdout/stderr logs and cleans up one-shot jobs after they fire.
+                    </p>
+                </section>
+
+                <section class="space-y-3 md:space-y-4">
+                    <h2 class="text-xl md:text-2xl font-semibold">Schedule types</h2>
+                    <div class="space-y-5 md:space-y-6">
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">croni add &lt;name&gt; --cron "0 9 * * MON-FRI" --command "..."</pre>
+                            <p class="mt-2">
+                                Standard 5-field cron expressions with full support for ranges, lists, steps, named months (<code class="bg-gray-100 px-1 py-0.5">JAN-DEC</code>), named weekdays (<code class="bg-gray-100 px-1 py-0.5">MON-SUN</code>), and shortcuts like <code class="bg-gray-100 px-1 py-0.5">@daily</code>, <code class="bg-gray-100 px-1 py-0.5">@hourly</code>, and <code class="bg-gray-100 px-1 py-0.5">@weekly</code>.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">croni add &lt;name&gt; --every 5m --command "..."</pre>
+                            <p class="mt-2">
+                                A simple recurring interval — <code class="bg-gray-100 px-1 py-0.5">5m</code>, <code class="bg-gray-100 px-1 py-0.5">2h</code>, <code class="bg-gray-100 px-1 py-0.5">1d</code> — when you don't want to think in cron fields.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">croni add &lt;name&gt; --at 20m --command "..."</pre>
+                            <p class="mt-2">
+                                A one-shot job that fires once and then auto-removes itself. Accepts a relative offset (<code class="bg-gray-100 px-1 py-0.5">20m</code>, <code class="bg-gray-100 px-1 py-0.5">2h</code>) or an absolute ISO 8601 timestamp (<code class="bg-gray-100 px-1 py-0.5">2026-05-13T15:00</code>).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="space-y-3 md:space-y-4">
+                    <h2 class="text-xl md:text-2xl font-semibold">Commands</h2>
+                    <div class="space-y-5 md:space-y-6">
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">croni add &lt;name&gt;</pre>
+                            <p class="mt-2">
+                                Creates a new scheduled job. Beyond the schedule and <code class="bg-gray-100 px-1 py-0.5">--command</code>, you can set a <code class="bg-gray-100 px-1 py-0.5">--workdir</code>, repeatable <code class="bg-gray-100 px-1 py-0.5">--env KEY=VAL</code> variables, a <code class="bg-gray-100 px-1 py-0.5">--description</code>, and create it <code class="bg-gray-100 px-1 py-0.5">--disabled</code> or with <code class="bg-gray-100 px-1 py-0.5">--run-on-load</code>. <code class="bg-gray-100 px-1 py-0.5">--run-on-load</code> is the default for <code class="bg-gray-100 px-1 py-0.5">--every</code> jobs — they run once as soon as they're loaded (including at each login), then on their interval. Pass <code class="bg-gray-100 px-1 py-0.5">--run-on-load=false</code> to wait for the first interval instead.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">croni list
+croni show &lt;name&gt;</pre>
+                            <p class="mt-2">
+                                List every job at a glance, or drill into the full configuration of a single one.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">croni run &lt;name&gt;
+croni edit &lt;name&gt;</pre>
+                            <p class="mt-2">
+                                Force-run a job now (synchronously, so you see the output) or modify an existing job in place.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">croni logs &lt;name&gt;</pre>
+                            <p class="mt-2">
+                                Tail a job's output. Pass <code class="bg-gray-100 px-1 py-0.5">--stderr</code> for the error stream, <code class="bg-gray-100 px-1 py-0.5">--tail N</code> to limit lines, or <code class="bg-gray-100 px-1 py-0.5">--follow</code> to stream live.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">croni enable &lt;name&gt;
+croni disable &lt;name&gt;</pre>
+                            <p class="mt-2">
+                                Unload a job from launchd without deleting it, then load it back later — handy for pausing something temporarily.
+                            </p>
+                        </div>
+                        <div>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">croni remove &lt;name&gt;
+croni export &lt;name&gt;</pre>
+                            <p class="mt-2">
+                                Remove a job (with <code class="bg-gray-100 px-1 py-0.5">--force</code> and <code class="bg-gray-100 px-1 py-0.5">--with-logs</code>), or dump the generated launchd plist to stdout if you want to see exactly what <code class="bg-gray-100 px-1 py-0.5">croni</code> produced.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="space-y-3 md:space-y-4">
+                    <h2 class="text-xl md:text-2xl font-semibold">Agent-ready</h2>
+                    <p>
+                        <code class="bg-gray-100 px-1 py-0.5">croni</code> is built to be driven by scripts, CI, and AI coding agents — not just typed by hand. It follows agent-friendly CLI conventions: predictable machine-readable output, honest exit codes, and never blocking on a prompt that isn't there. Which closes a fun little loop — an agent can schedule, inspect, and tear down its <em>own</em> recurring work.
+                    </p>
+                    <div class="space-y-5 md:space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">JSON on every command</p>
+                            <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add my-job --every 1h --command "echo hi" --json
+# {"status":"ok","job":{...}}</pre>
+                            <p class="mt-2">
+                                The global <code class="bg-gray-100 px-1 py-0.5">--json</code> flag wraps every command's output in a structured envelope you can pipe into <code class="bg-gray-100 px-1 py-0.5">jq</code> instead of scraping text. Failures come back the same way — a <code class="bg-gray-100 px-1 py-0.5">{"status":"error","error":"..."}</code> object — so an agent can parse success and failure alike.
+                            </p>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">Never hangs on input</p>
+                            <p class="mt-2">
+                                Commands run to completion without waiting on a terminal. The one confirmation prompt, <code class="bg-gray-100 px-1 py-0.5">croni remove</code>, detects when stdin isn't a TTY and fails fast with a clear message instead of blocking — or pass <code class="bg-gray-100 px-1 py-0.5">--force</code> to skip it outright.
+                            </p>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">Honest exit codes</p>
+                            <p class="mt-2">
+                                <code class="bg-gray-100 px-1 py-0.5">croni</code> exits non-zero whenever something fails, including <code class="bg-gray-100 px-1 py-0.5">croni run</code> when the underlying command fails — so a script or agent can branch on the result rather than guessing from stdout.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="space-y-3 md:space-y-4">
+                    <h2 class="text-xl md:text-2xl font-semibold">Recipes</h2>
+                    <p>
+                        Now that you've seen the pieces, here's how they come together. The sweet spot is anything recurring that should just keep happening in the background — especially <code class="bg-gray-100 px-1 py-0.5">claude -p</code> prompts.
+                    </p>
+                    <div class="space-y-5 md:space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">Daily standup prep</p>
+                            <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add standup --cron "0 8 * * MON-FRI" \
+  --workdir ~/src/work/api \
+  --command "claude -p 'Summarize my git commits and open PRs from yesterday'"</pre>
+                            <p class="mt-2">
+                                Let Claude write your standup before you sit down. <code class="bg-gray-100 px-1 py-0.5">--workdir</code> runs it inside the right repo, so it has the context it needs.
+                            </p>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">Periodic PR / inbox triage</p>
+                            <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add triage --every 2h \
+  --command "claude -p 'Review my open PRs and notifications, write a digest to ~/triage.md'"</pre>
+                            <p class="mt-2">
+                                A lightweight agent that keeps a running digest for you, refreshed through the day. Note that <code class="bg-gray-100 px-1 py-0.5">--every</code> jobs run immediately on add (and at each login) by default — add <code class="bg-gray-100 px-1 py-0.5">--run-on-load=false</code> if you'd rather wait for the first interval.
+                            </p>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">Nightly backups</p>
+                            <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add backup --cron "@daily" \
+  --command "restic backup ~/Documents ~/src"</pre>
+                            <p class="mt-2">
+                                A classic cron job that actually survives reboots, with stdout/stderr captured so you can confirm it ran with <code class="bg-gray-100 px-1 py-0.5">croni logs backup</code>.
+                            </p>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">Weekly system maintenance</p>
+                            <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add brew --cron "@weekly" \
+  --command "brew update &amp;&amp; brew upgrade &amp;&amp; brew cleanup"</pre>
+                            <p class="mt-2">
+                                Keep Homebrew fresh without remembering to. Check <code class="bg-gray-100 px-1 py-0.5">croni logs brew</code> to see what changed.
+                            </p>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">Local service health check</p>
+                            <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add health --every 5m \
+  --command "curl -fsS http://localhost:8080/health || say 'service is down'"</pre>
+                            <p class="mt-2">
+                                An interval check that pings you the moment something stops responding. Any command works — <code class="bg-gray-100 px-1 py-0.5">croni</code> doesn't care what language it's written in.
+                            </p>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">One-shot reminders</p>
+                            <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">croni add tea --at 4m --command "say 'Your tea is ready'"</pre>
+                            <p class="mt-2">
+                                Fire once and clean itself up — nicer than a <code class="bg-gray-100 px-1 py-0.5">sleep</code> loop because it survives closing the terminal. Use a relative offset or an absolute time like <code class="bg-gray-100 px-1 py-0.5">--at "2026-07-08T15:00"</code>.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="space-y-3 md:space-y-4">
+                    <h2 class="text-xl md:text-2xl font-semibold">Install</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="mb-2">Via Homebrew:</p>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">brew tap dsaiztc/tap
+brew install croni</pre>
+                        </div>
+                        <div>
+                            <p class="mb-2">Or with Go:</p>
+                            <pre class="bg-gray-100 p-3 md:p-4 text-xs md:text-sm">go install github.com/dsaiztc/croni@latest</pre>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="flex flex-wrap gap-1 md:gap-2 pt-2">
+                    <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">CLI</span>
+                    <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Go</span>
+                    <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">macOS</span>
+                    <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Agent-ready</span>
+                    <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Developer Tools</span>
+                    <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Open Source</span>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2024</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

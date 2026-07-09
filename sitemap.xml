@@ -2,15 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://dsaiztc.com/</loc>
-        <lastmod>2026-02-18</lastmod>
+        <lastmod>2026-07-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://dsaiztc.com/blog/</loc>
-        <lastmod>2026-03-03</lastmod>
+        <lastmod>2026-07-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://dsaiztc.com/blog/posts/introducing-croni.html</loc>
+        <lastmod>2026-07-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://dsaiztc.com/blog/posts/dev-worktrees.html</loc>
@@ -56,13 +62,19 @@
     </url>
     <url>
         <loc>https://dsaiztc.com/projects/</loc>
-        <lastmod>2026-02-18</lastmod>
+        <lastmod>2026-06-17</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://dsaiztc.com/dev/</loc>
         <lastmod>2026-02-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://dsaiztc.com/croni/</loc>
+        <lastmod>2026-06-17</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

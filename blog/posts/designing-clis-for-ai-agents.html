@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing CLIs for AI agents - Daniel Saiz</title>
+    <meta name="description" content="For an agent, a well-built CLI often beats an MCP server — but only if it's built for a caller that reads output instead of looking at a screen. The rules that make the difference.">
+    <meta name="author" content="Daniel Saiz">
+    <meta name="keywords" content="CLI, AI Agents, MCP, Developer Tools, Agent-native, Claude Code">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Designing CLIs for AI agents">
+    <meta property="og:description" content="For an agent, a well-built CLI often beats an MCP server — but only if it's built for a caller that reads output instead of looking at a screen. The rules that make the difference.">
+    <meta property="article:published_time" content="2026-08-25">
+    <meta property="article:tag" content="CLI">
+    <meta property="article:tag" content="AI Agents">
+    <meta property="article:tag" content="MCP">
+    <meta property="article:tag" content="Developer Tools">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Designing CLIs for AI agents",
+        "datePublished": "2026-08-25",
+        "author": {
+            "@type": "Person",
+            "name": "Daniel Saiz"
+        },
+        "keywords": ["CLI", "AI Agents", "MCP", "Developer Tools", "Agent-native", "Claude Code"],
+        "articleBody": "For an agent, a well-built CLI often beats an MCP server — but only if it's built for a caller that reads output instead of looking at a screen. A short set of do/because/else rules across output, failure, interaction, and discovery."
+    }
+    </script>
+
+    <!-- Beam Analytics -->
+    <script
+      src="https://beamanalytics.b-cdn.net/beam.min.js"
+      data-token="d62099d2-5537-46f3-836a-033a81ac69a6"
+      async
+    ></script>
+
+    <!-- PostHog Analytics -->
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init ns hs wi ls ds rs os capture calculateEventProperties fs register register_once register_for_session unregister unregister_for_session bs getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty gs cs createPersonProfile setInternalOrTestUser ts ys opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing vs debug M ps getPageViewId captureTraceFeedback captureTraceMetric Xr".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('phc_qlOI7D1JSGrR6AfyU3S5nPZmQtXV1ZLtPr81UeQZbKY', {
+            api_host: 'https://eu.i.posthog.com',
+            defaults: '2026-01-30',
+            person_profiles: 'identified_only',
+        })
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@2.0.0/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+    <script src="/js/dates.js"></script>
+</head>
+<body class="bg-white text-black font-mono">
+    <!-- Navigation -->
+    <nav class="border-b border-black">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-2 md:py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-base md:text-lg font-semibold hover:text-violet-600 hover:underline transition-colors">Daniel Saiz</a>
+                <div class="space-x-4 md:space-x-8">
+                    <a href="/" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Home</a>
+                    <a href="/blog" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Blog</a>
+                    <a href="/projects" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">Projects</a>
+                    <a href="/about" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-2 md:px-4 py-6 md:py-12">
+        <article class="prose prose-lg space-y-4 md:space-y-8">
+            <header class="space-y-2 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-semibold">Designing CLIs for AI agents</h1>
+                <time datetime="2026-08-25" class="text-xs md:text-sm text-violet-600"></time>
+            </header>
+
+            <div class="space-y-4 md:space-y-8 text-sm md:text-base leading-relaxed">
+                <div class="border-l-2 border-black pl-4 space-y-2">
+                    <p class="font-semibold">TL;DR</p>
+                    <p>For an agent, a well-built CLI often beats an MCP server — but only if you build it for a caller that <em>reads</em> output instead of looking at a screen. Below, the rules that make the difference: do X, because Y, or else Z.</p>
+                </div>
+
+                <p>
+                    Agents drive CLIs better than they drive MCP servers. An MCP client loads every tool's schema into the model's context up front, used or not — and it isn't a one-time cost: those tokens are a cache write on the first turn and a (cheaper) cache read on every turn after, so a server the agent never calls is pure waste — real money on the API, or a faster burn through your budget on a subscription. <a href="https://www.anthropic.com/engineering/code-execution-with-mcp" class="text-violet-600 hover:text-violet-800 hover:underline" target="_blank" rel="noopener noreferrer">Anthropic found</a> that writing code against those tools instead cut one task from 150,000 tokens to 2,000. A CLI, by contrast, costs nothing until you call it, and it composes — pipe one command into the next. Best of all it's verifiable: as <a href="https://lucumr.pocoo.org/2025/7/3/tools/" class="text-violet-600 hover:text-violet-800 hover:underline" target="_blank" rel="noopener noreferrer">Armin Ronacher</a> puts it, once a command works it runs a hundred times with no further inference.
+                </p>
+
+                <p>
+                    So the interface worth building is the CLI. But <a href="https://clig.dev/" class="text-violet-600 hover:text-violet-800 hover:underline" target="_blank" rel="noopener noreferrer">clig.dev</a>'s old default — humans first — has flipped: the agent is now often the primary caller (what <a href="https://trevinsays.com/p/10-principles-for-agent-native-clis" class="text-violet-600 hover:text-violet-800 hover:underline" target="_blank" rel="noopener noreferrer">Trevin Chow</a> calls <em>agent-native</em>), and it reads your output rather than looking at it. That changes what "good" means:
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Output</h2>
+
+                <p>
+                    <strong>Send data to stdout and everything else to stderr — and switch to JSON when you're not on a terminal.</strong> An agent pipes your output straight into a JSON parser like <code class="bg-gray-100 px-1 py-0.5">jq</code>, so a progress line or log wedged into that stream breaks the parse. Emit JSON automatically when stdout isn't a TTY — an interactive terminal, absent whenever output is piped or captured, which is exactly when an agent is calling (most runtimes expose an <code class="bg-gray-100 px-1 py-0.5">isatty()</code> check; an explicit <code class="bg-gray-100 px-1 py-0.5">--json</code> / <code class="bg-gray-100 px-1 py-0.5">--plain</code> always overrides). A human on a terminal still gets a table.
+                </p>
+
+                <p>
+                    <strong>Emit raw data, not a <code class="bg-gray-100 px-1 py-0.5">{"status":"ok"}</code> wrapper — the exit code is already the status.</strong> (The exit code is the number a command returns to its caller — <code class="bg-gray-100 px-1 py-0.5">0</code> for success — and the agent reads it separately from your output.) So wrapping success just encodes that same bit twice; print the object and let <code class="bg-gray-100 px-1 py-0.5">exit 0</code> mean ok. Wrap only when you must carry metadata like a cursor or total, and then wrap the <em>data</em>, not the status:
+                </p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">[ {…}, {…} ]                          # a bare list — just the data
+{ "items": [ … ], "next": "cursor" }  # wrap only to carry a cursor / total</pre>
+
+                <p>
+                    (My own croni wraps its success output in <code class="bg-gray-100 px-1 py-0.5">{"status":"ok",…}</code> — redundant, and I'd change it.)
+                </p>
+
+                <p>
+                    <strong>Keep output narrow by default.</strong> Every row costs the agent tokens, so a <code class="bg-gray-100 px-1 py-0.5">list</code> that dumps ten thousand results is a budget leak: paginate, offer <code class="bg-gray-100 px-1 py-0.5">--compact</code>, and on truncation emit a hint that teaches the next filter — otherwise the agent quietly works from half the picture.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Failure</h2>
+
+                <p>
+                    <strong>Exit <code class="bg-gray-100 px-1 py-0.5">0</code> on success, non-zero on failure — it's the first thing the agent checks, before it reads a byte.</strong> Get it wrong and nothing downstream can trust you; the worst case is a mutation that half-succeeds while still exiting <code class="bg-gray-100 px-1 py-0.5">0</code>, because the agent then builds on a lie. Keep it that simple to start — a small, stable taxonomy (<code class="bg-gray-100 px-1 py-0.5">2</code> usage error, <code class="bg-gray-100 px-1 py-0.5">3</code> not-found, <code class="bg-gray-100 px-1 py-0.5">4</code> auth) is a fine upgrade later, if you'll keep it documented.
+                </p>
+
+                <p>
+                    <strong>Put a machine-readable error on stderr, and enumerate the valid set.</strong> Give the agent something to parse and act on, not prose to interpret:
+                </p>
+
+                <pre class="bg-gray-100 p-3 md:p-4 overflow-x-auto text-xs md:text-sm">{"error": "invalid --status", "allowed": ["queued", "running", "failed"]}</pre>
+
+                <p>
+                    Enumerating the valid set lets it self-correct in one retry; a bare <code class="bg-gray-100 px-1 py-0.5">invalid status</code> just sends it to parse <code class="bg-gray-100 px-1 py-0.5">--help</code> and guess.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Interaction</h2>
+
+                <p>
+                    <strong>Never block on a prompt.</strong> An agent has no terminal to answer <code class="bg-gray-100 px-1 py-0.5">[y/N]</code>, so a confirmation doesn't slow it down — it hangs the whole turn. Detect a non-TTY and fail fast (croni's <code class="bg-gray-100 px-1 py-0.5">remove</code> refuses without <code class="bg-gray-100 px-1 py-0.5">--force</code>) instead of waiting for input that never comes.
+                </p>
+
+                <p>
+                    <strong>Make the destructive path opt-in, not the default.</strong> An agent retries blindly, so a command that deletes by default turns one transient error into repeated damage. For irreversible or high-blast-radius ops, require an explicit <code class="bg-gray-100 px-1 py-0.5">--force</code> / <code class="bg-gray-100 px-1 py-0.5">--commit</code> — a bare call should refuse and say how — and offer <code class="bg-gray-100 px-1 py-0.5">--dry-run</code> to preview first.
+                </p>
+
+                <p>
+                    One caveat: scale the guard to the blast radius. Cheap, reversible ops — an <code class="bg-gray-100 px-1 py-0.5">enable</code>, a <code class="bg-gray-100 px-1 py-0.5">tag</code>, anything idempotent (running it twice changes nothing) — should just execute; the conventional execute-by-default with an optional <code class="bg-gray-100 px-1 py-0.5">--dry-run</code> is fine there. Guarding <em>every</em> mutation only costs the agent extra calls.
+                </p>
+
+                <p>
+                    <strong>Make retries safe.</strong> Agents retry blindly on a timeout or a hiccup, and a human spots a duplicate where an agent won't — so a repeated <code class="bg-gray-100 px-1 py-0.5">create</code> should return the existing resource, not a second one (a natural key or idempotency token gets you there). Return an identifier in every mutation response too, so the next call can reference what this one did.
+                </p>
+
+                <p>
+                    <strong>Offer a <code class="bg-gray-100 px-1 py-0.5">--readonly</code> mode.</strong> A CLI that can deploy or delete is safer to hand an agent if you can pin it to non-mutating commands — a <code class="bg-gray-100 px-1 py-0.5">--readonly</code> flag (or a command allowlist) lets the caller lock the destructive paths off entirely, instead of trusting the agent to steer around them.
+                </p>
+
+                <h2 class="text-xl md:text-2xl font-semibold">Discovery</h2>
+
+                <p>
+                    <strong>Make <code class="bg-gray-100 px-1 py-0.5">--help</code> complete and parseable, with real examples — agents copy examples verbatim.</strong> If they can't learn to call you from <code class="bg-gray-100 px-1 py-0.5">--help</code>, they waste a round-trip guessing.
+                </p>
+
+                <p>
+                    <strong>Ship one command that dumps the whole command tree as JSON — don't make the agent crawl <code class="bg-gray-100 px-1 py-0.5">--help</code> on every subcommand.</strong> One call (<code class="bg-gray-100 px-1 py-0.5">mytool schema --json</code>, or an <code class="bg-gray-100 px-1 py-0.5">agent-context</code>) hands it every command, flag, and enum at once; generate it from the same source as <code class="bg-gray-100 px-1 py-0.5">--help</code> so the two never drift. Without it, an agent maps your CLI one <code class="bg-gray-100 px-1 py-0.5">--help</code> at a time — more calls, and a picture that can go stale.
+                </p>
+
+                <p>
+                    <strong>Use the conventional vocabulary: <code class="bg-gray-100 px-1 py-0.5">get</code> / <code class="bg-gray-100 px-1 py-0.5">list</code> / <code class="bg-gray-100 px-1 py-0.5">create</code>, and <code class="bg-gray-100 px-1 py-0.5">--json</code> not <code class="bg-gray-100 px-1 py-0.5">--format</code>.</strong> Agents generalize across every CLI they've seen, so a conventional tool is recognized on first contact; one that takes <code class="bg-gray-100 px-1 py-0.5">--format json</code> where the rest of the world takes <code class="bg-gray-100 px-1 py-0.5">--json</code> succeeds slowly, after wasted <code class="bg-gray-100 px-1 py-0.5">--help</code> calls. Stay predictable elsewhere too: ship <code class="bg-gray-100 px-1 py-0.5">--version</code>, honor <code class="bg-gray-100 px-1 py-0.5">NO_COLOR</code>, be idempotent.
+                </p>
+
+                <p>
+                    <strong>Building the CLI isn't the only side of this — sometimes you're wiring one into an agent.</strong> For that you need almost nothing: a single line in the agent's instructions file (<code class="bg-gray-100 px-1 py-0.5">CLAUDE.md</code>, <code class="bg-gray-100 px-1 py-0.5">AGENTS.md</code>) pointing at the CLI usually beats standing up an MCP server, and in Claude Code a <em>Skill</em> makes a set of commands discoverable without keeping their schemas in context. Reach for MCP when the consumer is an IDE with no shell, or you need a stateful or streaming session.
+                </p>
+
+                <p>
+                    None of this is exotic — it's the old CLI wisdom re-centered on a reader who happens to be a machine. Build it in from the start and the same tool serves your agents, your scripts, and future-you. This is the foundation; for the deeper cut — async <code class="bg-gray-100 px-1 py-0.5">--wait</code> and job ledgers, profiles, the skill and introspection layers — <a href="https://trevinsays.com/p/10-principles-for-agent-native-clis" class="text-violet-600 hover:text-violet-800 hover:underline" target="_blank" rel="noopener noreferrer">Trevin Chow's ten principles</a> go further. I build <a href="/dev" class="text-violet-600 hover:text-violet-800 hover:underline">dev</a> and <a href="/croni" class="text-violet-600 hover:text-violet-800 hover:underline">croni</a> this way — one wrapper I'd take back and all. Tell me what I got wrong.
+                </p>
+
+                <div class="mt-8 space-y-2">
+                    <h2 class="text-xl md:text-2xl font-semibold">Tags</h2>
+                    <div class="flex flex-wrap gap-1 md:gap-2">
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">CLI</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">AI Agents</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">MCP</span>
+                        <span class="text-xs md:text-sm px-1 md:px-3 py-0.5 md:py-1 border border-black">Developer Tools</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black mt-8 md:mt-16">
+        <div class="max-w-3xl mx-auto px-2 md:px-4 py-4 md:py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xs md:text-sm">
+                    © <span data-current-year>2024</span> Daniel Saiz
+                </div>
+                <div class="space-x-2 md:space-x-4">
+                    <a href="https://github.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/dsaiztc" class="text-xs md:text-base hover:text-violet-600 hover:underline transition-colors" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

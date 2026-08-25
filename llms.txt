@@ -12,6 +12,11 @@ Description: Personal website featuring blog posts about software engineering, p
 - [Projects](/projects/) - Showcase of software development projects
 
 ### Blog Posts
+- [Designing CLIs for AI agents](/blog/posts/designing-clis-for-ai-agents.html)
+  - Published: 2026-08-25
+  - Tags: CLI, AI Agents, MCP, Developer Tools, Agent-ready, Claude Code
+  - Description: For an agent, a well-built CLI often beats an MCP server — but only if it's built for a caller that reads output instead of a screen. Short do/because/else rules across output, failure, interaction, and discovery, plus when MCP still wins.
+
 - [Introducing croni: cron-like scheduling for macOS](/blog/posts/introducing-croni.html)
   - Published: 2026-07-08
   - Tags: CLI, Go, macOS, launchd, cron, Scheduling, Claude Code
